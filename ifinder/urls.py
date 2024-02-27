@@ -1,7 +1,8 @@
 from django.urls import path
-from ifinder.views import home, contato
+from . import views
 
 urlpatterns = [
-    path('',home),
-    path('contato/',contato),
+    path('',views.home),
+    path('contato/',views.contato),
+    path('index/', views.index)
 ]
