@@ -1,0 +1,27 @@
+{% extends 'global/base.html'%}
+
+{% block title %} | Lista de objetos{% endblock title %}
+
+{% block content %}
+    <h2 class="topo-login">Lista de objetos</h2>
+
+    <div class="container-objetos">
+        <div class="objeto-content">
+            <div class="objeto-header">
+                <div class="title">
+                    <h3>Título</h3>
+                </div>
+                <div class="data">
+                    <p>27/02</p>
+                    <i class="fa-solid fa-arrow-down"></i>
+                </div>
+            </div>
+            <div class="objeto-descricao">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            </div>
+        </div>
+        <!-- {% for objeto in objetos %}
+        {% include "ifinder/partials/objeto.html" %}
+        {% endfor %} -->
+    </div>
+{% endblock content %}

@@ -1,18 +1,9 @@
 {% extends 'global/base.html'%}
 
+{% block title %} | Página inicial{% endblock title %}
+
 {% block content %}
     <body>
-        <header>
-            <div class="nav-menu-add">
-                <i class="fa-solid fa-house" style="color: transparent;"></i>
-            </div>
-            <h1>IFinder</h1>
-            <div class="nav-menu-logout">
-                <a href="./login.html">
-                    <i class="fa-solid fa-right-from-bracket"></i>
-                </a>
-            </div>
-        </header>
         <main>
             <h2 class="topo-login">Oque deseja fazer?</h2>
             <section>
@@ -21,23 +12,21 @@
                         <div class="logo-menu">
                             <i class="fa-solid fa-bars"></i>
                         </div>
-                        <a class="texto-menu" href="./lista-objetos.html">Ver lista de objetos</a>
+                        <a class="texto-menu" href="objetos/">Ver lista de objetos</a>
                     </div>
                     <div class="botoes-home">
                         <div class="logo-menu">
                             <i class="fa-solid fa-person-circle-question"></i>
                         </div>
-                        <a class="texto-menu" href="./perdi-objeto.html">Cadastrar que perdi meu objeto</a>
+                        <a class="texto-menu" href="perdi-objeto/">Cadastrar que perdi meu objeto</a>
                     </div>
                     <div class="botoes-home">
                         <div class="logo-menu">
                             <i class="fa-solid fa-person-circle-plus"></i>
                         </div>
-                        <a class="texto-menu" href="./encontrei-objeto.html">Cadastrar que encontrei um objeto</a>
+                        <a class="texto-menu" href="encontrei-objeto/">Cadastrar que encontrei um objeto</a>
                     </div>
             </section>
         </main>
     </body>
-
-    </html>
 {% endblock content %}

@@ -1,11 +1,13 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 
 def home(request):
-    return HttpResponse('home')
+    return render(request, "ifinder/pages/home.html")
 
-def index(request):
-    return render(request, "ifinder/pages/index.html")
+def objetos(request):
+    return render(request, "ifinder/pages/objetos.html")
 
-def contato(request):
-    return HttpResponse('contato ifinder')
+def perdi_objeto(request):
+    return render(request, "ifinder/pages/perdi-objeto.html")
+
+def encontrei_objeto(request):
+    return render(request, "ifinder/pages/encontrei-objeto.html")

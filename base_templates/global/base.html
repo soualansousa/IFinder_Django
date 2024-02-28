@@ -3,6 +3,10 @@
 
 <head>
     {% include "ifinder/partials/head.html" %}
+    <title>IFinder{% block title %}{% endblock title %}</title>
 </head>
+    {% include "ifinder/partials/header.html" %}
+
 {% block content %}
 {% endblock content %}
+</html>
