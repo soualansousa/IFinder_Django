@@ -6,44 +6,8 @@
     <h2 class="topo-login">Lista de objetos</h2>
 
     <div class="objetos-container">
-        <div class="objeto">
-            <div class="objeto-header">
-                <div class="objeto-titulo">
-                    <h3>Nome do objeto</h3>
-                </div>
-                <div class="data-icon">
-                    <p>27/02</p>
-                </div>
-            </div>
-            <div class="objeto-descrição">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus at minus quaerat molestias officia facere voluptate libero earum laboriosam consequatur accusantium maxime temporibus, optio animi blanditiis eveniet cumque quam minima.</p>
-            </div>
-        </div>
-        <div class="objeto">
-            <div class="objeto-header">
-                <div class="objeto-titulo">
-                    <h3>Nome do objeto</h3>
-                </div>
-                <div class="data-icon">
-                    <p>27/02</p>
-                </div>
-            </div>
-            <div class="objeto-descrição">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus at minus quaerat molestias officia facere voluptate libero earum laboriosam consequatur accusantium maxime temporibus, optio animi blanditiis eveniet cumque quam minima.</p>
-            </div>
-        </div>
-        <div class="objeto">
-            <div class="objeto-header">
-                <div class="objeto-titulo">
-                    <h3>Nome do objeto</h3>
-                </div>
-                <div class="data-icon">
-                    <p>27/02</p>
-                </div>
-            </div>
-            <div class="objeto-descrição">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus at minus quaerat molestias officia facere voluptate libero earum laboriosam consequatur accusantium maxime temporibus, optio animi blanditiis eveniet cumque quam minima.</p>
-            </div>
-        </div>
+        {% for objeto in objetos %}
+            {% include "ifinder/partials/objeto.html" %}
+        {% endfor %}
     </div>
 {% endblock content %}

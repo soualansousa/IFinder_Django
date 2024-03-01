@@ -1,9 +1,13 @@
-<div class="objeto-content">
-    <div class="objeto-header">
-        <h3>Título</h3>
-        <p>27/02</p>
+    <div class="objeto">
+        <div class="objeto-header">
+            <div class="objeto-titulo">
+                <h3>{{objeto.title}}</h3>
+            </div>
+            <div class="data-icon">
+                <p>{{objeto.created_at|date:"d/m/Y"}}</p>
+            </div>
+        </div>
+        <div class="objeto-descrição">
+            <p>{{objeto.description}}</p>
+        </div>
     </div>
-    <div class="objeto-descricao">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-    </div>
-</div>

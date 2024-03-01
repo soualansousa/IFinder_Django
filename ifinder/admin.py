@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Objeto
+
+class ObjetoAdmin(admin.ModelAdmin):
+    ...
+
+admin.site.register(Objeto, ObjetoAdmin)
