@@ -6,8 +6,8 @@ def home(request):
     return render(request, "ifinder/pages/home.html")
 
 def objetos(request):
-    #objetos= Objeto.objects.all().order_by('-id')
-    return render(request, "ifinder/pages/objetos.html", context= {'objetos':[make_recipe() for _ in range (10)]})
+    objetos= Objeto.objects.all()#.order_by('-id')
+    return render(request, "ifinder/pages/objetos.html", context= {'ifinder': objetos})
 
 def perdi_objeto(request):
     return render(request, "ifinder/pages/perdi-objeto.html")
