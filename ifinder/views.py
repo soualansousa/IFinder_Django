@@ -7,7 +7,7 @@ def home(request):
 
 def itens(request):
     itens= Objeto.objects.all()#.order_by('-id')
-    return render(request, "ifinder/pages/lista-itens.html", context= {'IFINDER': itens})
+    return render(request, "ifinder/pages/lista-itens.html", context= {'itens': itens})
 
 def perdi_item(request):
     return render(request, "ifinder/pages/perdi-item.html")
