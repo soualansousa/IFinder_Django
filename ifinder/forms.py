@@ -1,2 +1,8 @@
 from django import forms
-#criar os formularios aqui
+class InsereitemForm(forms.Form):
+    nome= forms.CharField(
+        label='Nome do item', max_length=65
+    )
+    descricao= forms.CharField(
+        label='descrição do item', max_length=165
+    )

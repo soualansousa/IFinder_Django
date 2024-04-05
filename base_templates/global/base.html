@@ -1,12 +1,34 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 
+{% load static %}
+
 <head>
-    {% include "ifinder/partials/head.html" %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/solid.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/brands.min.css">
+    <link rel="stylesheet" href="{% static 'ifinder/css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'ifinder/css/responsive.css' %}">
     <title>IFinder{% block title %}{% endblock title %}</title>
+    {% block head %}{% endblock head %}
 </head>
-    {% include "ifinder/partials/header.html" %}
 <body>
+    <header>
+        <div class="nav-menu-home">
+            <a href="/">
+                <i class="fa-solid fa-house"></i>
+            </a>
+        </div>
+        <h1>IFinder</h1>
+        <div class="nav-menu-logout">
+            <a href="/">
+                <i class="fa-solid fa-right-from-bracket"></i>
+            </a>
+        </div>
+    </header>
  {% block content %}
  {% endblock content %} 
 </body>
