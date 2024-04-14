@@ -1,8 +1,8 @@
 from django.contrib import admin
 
-from .models import Objeto
+from .models import Item
 
-class ObjetoAdmin(admin.ModelAdmin):
+class ItemAdmin(admin.ModelAdmin):
     ...
 
-admin.site.register(Objeto, ObjetoAdmin)
+admin.site.register(Item, ItemAdmin)

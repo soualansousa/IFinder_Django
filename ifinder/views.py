@@ -1,12 +1,12 @@
 from django.shortcuts import render
 from utils.ifinder.factory import make_recipe
-from .models import Objeto
+from .models import Item
 
 def home(request):
     return render(request, "ifinder/pages/home.html")
 
-def itens(request):
-    itens= Objeto.objects.all()#.order_by('-id')
+def lista_itens(request):
+    itens= Item.objects.all()#.order_by('-id')
     return render(request, "ifinder/pages/lista-itens.html", context= {'itens': itens})
 
 def perdi_item(request):
