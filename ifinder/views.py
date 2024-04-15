@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponseRedirect
 from utils.ifinder.factory import make_recipe  # noqa
 from .models import Item
+from django.urls import reverse
+from .forms import Formulario
 
 
 def home(request):
@@ -14,7 +16,16 @@ def lista_itens(request):
 
 
 def perdi_item(request):
-    return render(request, "ifinder/pages/perdi-item.html")
+    if request.method == "POST":
+        lista_itens = Formulario(request.POST)
+        if lista_itens.is_valid():
+            title = lista_itens.cleaned_data['title']
+            description = lista_itens.cleaned_data['description']
+            itens = lista_itens.save()
+            return HttpResponseRedirect(reverse(home))
+    else:
+        lista_itens = Formulario()
+    return render(request, "ifinder/pages/perdi-item.html", {'itens': lista_itens})  # noqa
 
 
 def encontrei_item(request):

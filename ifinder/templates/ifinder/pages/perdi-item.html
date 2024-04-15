@@ -19,7 +19,14 @@
             <input class="botao-enviar" type="submit" value="Cadastrar">
         </fieldset>
     </form> {% endcomment %}
-
-    
-
+    <form method="post" action="">
+        {% csrf_token %}
+        {% for field in itens  %}
+        <div class="menu-cadastrar">
+            {{field.label_tag}}
+            {{field}}
+        </div>
+        {% endfor %}
+        <input class="botao-enviar" type="submit" value="Cadastrar">
+    </form>
 {% endblock content %}
