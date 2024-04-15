@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponseRedirect
 from utils.ifinder.factory import make_recipe  # noqa
 from .models import Item
-from django.urls import reverse
+from django.urls import reverse_lazy
 from .forms import Formulario
 
 
@@ -22,7 +22,7 @@ def perdi_item(request):
             title = lista_itens.cleaned_data['title']
             description = lista_itens.cleaned_data['description']
             itens = lista_itens.save()
-            return HttpResponseRedirect(reverse(home))
+            return render(request, 'ifinder/pages/home.html')
     else:
         lista_itens = Formulario()
     return render(request, "ifinder/pages/perdi-item.html", {'itens': lista_itens})  # noqa
