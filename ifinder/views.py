@@ -22,7 +22,7 @@ def perdi_item(request):
             title = lista_itens.cleaned_data['title']
             description = lista_itens.cleaned_data['description']
             itens = lista_itens.save()
-            return render(request, 'ifinder/pages/home.html')
+            return render(request, 'ifinder/pages/cadastro-concluido.html')
     else:
         lista_itens = Formulario()
     return render(request, "ifinder/pages/perdi-item.html", {'itens': lista_itens})  # noqa

@@ -19,7 +19,7 @@
             <input class="botao-enviar" type="submit" value="Cadastrar">
         </fieldset>
     </form> {% endcomment %}
-    <form method="post" action="">
+    <form id="formulario" method="post" action="">
         {% csrf_token %}
         {% for field in itens  %}
         <div class="menu-cadastrar">
@@ -27,7 +27,30 @@
             {{field}}
         </div>
         {% endfor %}
-        <button class="botao-enviar" type="submit">Cadastrar</button>
-        
+        <button id="botao_cadastrar" class="botao-enviar" type="submit">Cadastrar</button>
     </form>
+
+    {% include "ifinder/partials/modal.html" %}
+
+    <script>
+        document.getElementById("formulario").addEventListener("submit", function(event) {
+          event.preventDefault(); // Evita que o formulário seja enviado normalmente
+          
+          // Faz uma requisição AJAX para enviar o formulário
+          var form = this;
+          var formData = new FormData(form);
+          var xhr = new XMLHttpRequest();
+          xhr.open("POST", form.action);
+          xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+          xhr.onload = function() {
+            if (xhr.status === 200) {
+              // Exibe o modal após o envio bem-sucedido do formulário
+              var modal = document.getElementById("myModal");
+              modal.style.display = "block";
+            }
+          };
+          xhr.send(formData);
+        });
+        </script>
+
 {% endblock content %}
