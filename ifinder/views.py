@@ -25,8 +25,20 @@ def perdi_item(request):
             return render(request, 'ifinder/pages/cadastro-concluido.html')
     else:
         lista_itens = Formulario()
-    return render(request, "ifinder/pages/perdi-item.html", {'itens': lista_itens})  # noqa
+    return render(request, "ifinder/pages/perdi-item.html", {'itens': lista_itens})
 
+
+# def encontrei_item(request):
+#     return render(request, "ifinder/pages/encontrei-item.html")
 
 def encontrei_item(request):
-    return render(request, "ifinder/pages/encontrei-item.html")
+    if request.method == "POST":
+        lista_itens = Formulario(request.POST)
+        if lista_itens.is_valid():
+            title = lista_itens.cleaned_data['title']
+            description = lista_itens.cleaned_data['description']
+            itens = lista_itens.save()
+            return render(request, 'ifinder/pages/cadastro-concluido.html')
+    else:
+        lista_itens = Formulario()
+    return render(request, "ifinder/pages/encontrei-item.html", {'itens': lista_itens})

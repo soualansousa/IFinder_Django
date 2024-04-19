@@ -27,7 +27,7 @@
         color: var(--background-color);
         margin-bottom: 1.5rem;
     }
-    .display-menu-formulario .botoes-home {
+    .display-menu .botoes-home {
         width: 26rem;
     }
     .menu-home a{

@@ -6,29 +6,18 @@
     
     <h2 class="topo-login">Perdi meu item</h2>
 
-    {% comment %} <form action="">
-        <fieldset class="display-menu-formulario" style="border: none;">
+    <div class="display-menu-formulario">
+        <form id="formulario" method="post" action="">
+            {% csrf_token %}
+            {% for field in itens  %}
             <div class="menu-cadastrar">
-                <label for="titulo">Nome</label> 
-                <input type="text" id="titulo" required>
+                {{field.label_tag}}
+                {{field}}
             </div>
-            <div class="menu-cadastrar">
-                <label for="descricao">Descrição</label>
-                <textarea name="descricao" id="descricao" cols="30" rows="10"></textarea>
-            </div>
-            <input class="botao-enviar" type="submit" value="Cadastrar">
-        </fieldset>
-    </form> {% endcomment %}
-    <form id="formulario" method="post" action="">
-        {% csrf_token %}
-        {% for field in itens  %}
-        <div class="menu-cadastrar">
-            {{field.label_tag}}
-            {{field}}
-        </div>
-        {% endfor %}
-        <button id="botao_cadastrar" class="botao-enviar" type="submit">Cadastrar</button>
-    </form>
+            {% endfor %}
+            <button id="botao_cadastrar" class="botao-enviar" type="submit">Cadastrar</button>
+        </form>
+    </div>
 
     {% include "ifinder/partials/modal.html" %}
 

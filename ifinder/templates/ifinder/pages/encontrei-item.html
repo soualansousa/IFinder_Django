@@ -6,4 +6,38 @@
     
     <h2 class="topo-login">Encontrei um item</h2>
 
+    <div class="display-menu-formulario">
+        <form id="formulario" method="post" action="">
+            {% csrf_token %}
+            {% for field in itens  %}
+            <div class="menu-cadastrar">
+                {{field.label_tag}}
+                {{field}}
+            </div>
+            {% endfor %}
+            <button id="botao_cadastrar" class="botao-enviar" type="submit">Cadastrar</button>
+        </form>
+    </div>
+
+    {% include "ifinder/partials/modal.html" %}
+
+    <script>
+        document.getElementById("formulario").addEventListener("submit", function(event) {
+          event.preventDefault();
+          
+          var form = this;
+          var formData = new FormData(form);
+          var xhr = new XMLHttpRequest();
+          xhr.open("POST", form.action);
+          xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+          xhr.onload = function() {
+            if (xhr.status === 200) {
+              var modal = document.getElementById("myModal");
+              modal.style.display = "block";
+            }
+          };
+          xhr.send(formData);
+        });
+        </script>
+
 {% endblock content %}

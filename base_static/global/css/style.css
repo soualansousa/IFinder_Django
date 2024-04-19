@@ -63,14 +63,7 @@ textarea {
     font-size: 3.5rem;
 }
 
-.display-menu{
-    display: flex;
-    justify-content: space-around;
-    min-width: 26rem;
-    font-size: 1.2rem;
-}
-
-.display-menu-formulario {
+.display-menu {
     display: grid;
     justify-content: center;
     justify-items: center;
@@ -80,14 +73,27 @@ textarea {
     border-radius: 5px;
 }
 
-.display-menu-formulario .botoes-home {
+.display-menu-formulario {
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    min-width: 26rem;
+    border: none;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.botoes-home {
     color: var(--menu-color);
     display: flex;
     flex-direction: row;
     margin: 1.3rem;
     padding: 0.8rem;
     width: 51.8rem;
+    height: 7.2rem;
     text-align: center;
+    align-items: center;
+    justify-content: space-around;
     font-size: 1.8rem;
     border-radius: 0.3125rem;
     background: #FFF;
@@ -102,8 +108,9 @@ textarea {
 .logo-menu{
     font-size: 2.5rem;
     display: flex;
-    width: auto;
+    width: 20%;
     align-items: center;
+    justify-content: center;
 }
 .nav-menu-logout{
     display: flex;
@@ -131,6 +138,7 @@ textarea {
     color: var(--menu-color);
     display: flex;
     padding: inherit;
+    width: 100%;
 }
 
 .icon-login{
@@ -182,7 +190,7 @@ textarea {
 
 .menu-cadastrar{
     display: flex;
-    width: 65rem;
+    width: auto;
     flex-direction: column;
     align-items: center;
     background-color: var(--menu-color);

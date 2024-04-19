@@ -1,8 +1,8 @@
 <!-- modal.html -->
 <div id="myModal" class="modal">
     <div class="modal-content">
-      <span class="close" id="closeModal" >&times;</span>
-      <p>Seu item foi cadastrado com sucesso!</p>
+        <p>Seu item foi cadastrado com sucesso!</p>
+        <span class="close" id="closeModal" >&times;</span>
     </div>
 </div>
   
@@ -13,19 +13,28 @@
         z-index: 1;
         left: 0;
         top: 0;
-        width: 100%; 
-        height: 100%;
+        width: 100vw; 
+        height: 100vh;
+        padding: 0.5rem;
         overflow: auto;
         background-color: rgba(0,0,0,0.4);
-      }
+}
     
     .modal-content {
-        background-color: #fefefe;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #ffffff;
         margin: 15% auto;
-        padding: 20px;
+        padding: 1rem;
         border: 1px solid #888;
-        width: 80%;
-    }  
+        width: 50%;
+    }
+    
+    .modal-content p {
+        font-size: 1.3rem;
+    }
     
     .close {
         color: #aaa;
@@ -43,33 +52,25 @@
 </style>
   
 <script>
-    // JavaScript para o modal
-    // Obtém o modal
     var modal = document.getElementById("myModal");
 
-    // Obtém o botão que abre o modal
     var btn = document.getElementById("botao_cadastrar");
 
-    // Obtém o elemento <span> que fecha o modal
     var span = document.getElementsByClassName("close")[0];
 
-    {% comment %} var closeModalBtn = document.getElementById("closeModal"); {% endcomment %}
-
-    // Quando o usuário clica no botão, abre o modal
     btn.onclick = function() {
     modal.style.display = "block";
     }
 
-    // Quando o usuário clica no <span> (x), fecha o modal
     span.onclick = function() {
     modal.style.display = "none";
     window.location.href = "/";
     }
 
-    // Quando o usuário clica em qualquer lugar fora do modal, fecha o modal
     window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none"
+        window.location.href = "/";
     }
     }
 
