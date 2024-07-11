@@ -1,13 +1,14 @@
 from django.db import models
+from django.contrib import admin
 from django.contrib.auth.models import User
 
 
 class Item(models.Model):
-    title = models.CharField(max_length=65)
-    description = models.CharField(max_length=165)
-    is_published = models.BooleanField(default=False)
-    date = models.DateTimeField(auto_now_add=True)
-    author = models.ForeignKey(
+    Título = models.CharField(max_length=65)
+    Descrição = models.CharField(max_length=165)
+    Publicada = models.BooleanField(default=False)
+    Data = models.DateTimeField(auto_now_add=True)
+    Autor = models.ForeignKey(
         User, on_delete=models.SET_NULL, null=True
     )
 

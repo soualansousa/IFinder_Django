@@ -19,8 +19,8 @@ def perdi_item(request):
     if request.method == "POST":
         lista_itens = Formulario(request.POST)
         if lista_itens.is_valid():
-            title = lista_itens.cleaned_data['title'] # noqa
-            description = lista_itens.cleaned_data['description']# noqa
+            title = lista_itens.cleaned_data['Título'] # noqa
+            description = lista_itens.cleaned_data['Descrição']# noqa
             itens = lista_itens.save() # noqa
             return render(request, 'ifinder/pages/cadastro-concluido.html')
     else:
