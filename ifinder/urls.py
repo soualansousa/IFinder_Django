@@ -7,5 +7,5 @@ urlpatterns = [
     path('lista-itens/', views.lista_itens, name="itens"),
     path('perdi-item/', views.perdi_item, name='perdi_item'),
     path('encontrei-item/', views.encontrei_item, name='encontrei_item'),
-    path('login/', views.login_page),
+    path('login/', views.user_login),
 ]
