@@ -42,3 +42,5 @@ def encontrei_item(request):
     else:
         lista_itens = Formulario()
     return render(request, "ifinder/pages/encontrei-item.html", {'itens': lista_itens}) # noqa
+def login_page(request):
+    return render(request, "ifinder/pages/login-page.html")
