@@ -303,3 +303,22 @@ textarea {
 .filtro {
     margin-left: 1.5rem;
 }
+.password{
+    color: var(--botton-color-green);
+    text-align: center;
+    font-family: Roboto;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+.form-login{
+    display: flex;
+    width: 253px;
+    padding: 7px 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-flow: column;
+    border-radius: 5px;
+}
