@@ -5,9 +5,12 @@
     <h1 class="topo-login">Login</h1>
    <div class="display-menu-formulario"> 
         <form method="post">
-            <div class= "menu-cadastrar">
+            <div>
                 {% csrf_token %}
                 {{ form.as_p }}
+            </div>
+            <div>
+                <a href="/">Esqueceu a senha?</a>
             </div>
          <button type="submit" class="botao-enviar">Login</button>
         </form>
