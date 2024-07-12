@@ -6,3 +6,4 @@ class Formulario(forms.ModelForm):
     class Meta:
         model = Item
         fields = '__all__'
+        exclude = ('Publicada',)
