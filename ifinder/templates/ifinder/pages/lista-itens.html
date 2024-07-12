@@ -5,11 +5,11 @@
 {% block content %}
     <h2 class="topo-login">Lista de itens</h2>
 
-    {% comment %} <div>
-        <a href="{% url 'ifinder/partials/lista_itens' %}?status=perdido">Itens Perdidos</a> |
-        <a href="{% url 'ifinder/partials/lista_itens' %}?status=encontrado">Itens Encontrados</a> |
-        <a href="{% url 'ifinder/partials/lista_itens' %}">Todos os Itens</a>
-    </div> {% endcomment %}
+    <div>
+        <a href="{% url 'ifinder/partials/lista-itens' %}?status=perdido">Itens Perdidos</a> |
+        <a href="{% url 'ifinder/partials/lista-itens' %}?status=encontrado">Itens Encontrados</a> |
+        <a href="{% url 'ifinder/partials/lista-itens' %}">Todos os Itens</a>
+    </div>
 
     <div class="objetos-container">
         {% for Items in itens %}
