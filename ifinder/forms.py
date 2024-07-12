@@ -9,6 +9,6 @@ class Formulario(forms.ModelForm):
         fields = '__all__'
         exclude = ('Publicada',)
 
-class CustomLoginForm(AuthenticationForm):
+class LoginForm(AuthenticationForm):
     username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
