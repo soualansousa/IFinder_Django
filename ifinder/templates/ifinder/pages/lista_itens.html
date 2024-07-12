@@ -5,7 +5,7 @@
 {% block content %}
     <h2 class="topo-login">Lista de itens</h2>
 
-    <div class="filter-container">
+    <div class="filtro">
         <select id="statusFilter" onchange="filterItems()">
             <option value="todos" {% if status == 'todos' %}selected{% endif %}>Todos</option>
             <option value="perdido" {% if status == 'perdido' %}selected{% endif %}>Perdidos</option>
