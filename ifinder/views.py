@@ -29,9 +29,6 @@ def perdi_item(request):
     return render(request, "ifinder/pages/perdi-item.html", {'itens': lista_itens}) # noqa
 
 
-# def encontrei_item(request):
-#     return render(request, "ifinder/pages/encontrei-item.html")
-
 def encontrei_item(request):
     if request.method == "POST":
         lista_itens = Formulario(request.POST)
@@ -43,5 +40,7 @@ def encontrei_item(request):
     else:
         lista_itens = Formulario()
     return render(request, "ifinder/pages/encontrei-item.html", {'itens': lista_itens}) # noqa
+
+
 def login_page(request):
     return render(request, "ifinder/pages/login-page.html")
