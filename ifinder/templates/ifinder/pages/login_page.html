@@ -3,11 +3,15 @@
 {% block title %} | Login{% endblock title %}
 {{% block content %}
     <h1 class="topo-login">Login</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Login</button>
-    </form>
+   <div class="display-menu-formulario"> 
+        <form method="post">
+            <div class= "menu-cadastrar">
+                {% csrf_token %}
+                {{ form.as_p }}
+            </div>
+         <button type="submit" class="botao-enviar">Login</button>
+        </form>
+    </div>
 
 
 
