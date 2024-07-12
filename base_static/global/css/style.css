@@ -299,3 +299,7 @@ textarea {
 .objeto:hover {
     transform: scale(1.01);
 }
+
+.filtro {
+    margin-left: 1.5rem;
+}
