@@ -5,10 +5,12 @@
 {% block content %}
     <h2 class="topo-login">Lista de itens</h2>
 
-    <div>
-        <a href="{% url 'lista_itens' %}?status=perdido">Itens Perdidos</a> |
-        <a href="{% url 'lista_itens' %}?status=encontrado">Itens Encontrados</a> |
-        <a href="{% url 'lista_itens' %}">Todos os Itens</a>
+    <div class="filter-container">
+        <select id="statusFilter" onchange="filterItems()">
+            <option value="todos" {% if status == 'todos' %}selected{% endif %}>Todos</option>
+            <option value="perdido" {% if status == 'perdido' %}selected{% endif %}>Perdidos</option>
+            <option value="encontrado" {% if status == 'encontrado' %}selected{% endif %}>Encontrados</option>
+        </select>
     </div>
 
     <div class="objetos-container">
@@ -16,4 +18,12 @@
             {% include "ifinder/partials/item.html" %}
         {% endfor %}
     </div>
+
+    <script>
+        function filterItems() {
+            var status = document.getElementById("statusFilter").value;
+            window.location.href = "?status=" + status;
+        }
+    </script>
+
 {% endblock content %}
