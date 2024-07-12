@@ -4,6 +4,10 @@ from django.contrib.auth.models import User
 
 
 class Item(models.Model):
+    STATUS_CHOICES = [
+        ('perdido', 'Perdido'),
+        ('encontrado', 'Encontrado'),
+    ]
     Título = models.CharField(max_length=65)
     Descrição = models.CharField(max_length=165)
     Publicada = models.BooleanField(default=False)
@@ -11,6 +15,7 @@ class Item(models.Model):
     Autor = models.ForeignKey(
         User, on_delete=models.SET_NULL, null=True
     )
+    Status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='perdido')
 
     def __str__(self):
         return self.Título

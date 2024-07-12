@@ -7,7 +7,7 @@ class Formulario(forms.ModelForm):
     class Meta:
         model = Item
         fields = '__all__'
-        exclude = ('Publicada',)
+        exclude = ('Publicada', 'Status')
 
 class CustomLoginForm(AuthenticationForm):
     username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
