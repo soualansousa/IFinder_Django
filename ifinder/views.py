@@ -13,18 +13,24 @@ def home(request):
 
 
 def lista_itens(request):
-    itens = Item.objects.all()  # .order_by('-id')
-
-    return render(request, "ifinder/pages/lista_itens.html", context={'itens': itens})  # noqa
+    status = request.GET.get('status', 'todos')
+    if status == 'perdido':
+        itens = Item.objects.filter(Status='perdido', Publicada=True)
+    elif status == 'encontrado':
+        itens = Item.objects.filter(Status='encontrado', Publicada=True)
+    else:
+        itens = Item.objects.filter(Publicada=True)
+    
+    return render(request, "ifinder/pages/lista_itens.html", {'itens': itens, 'status': status})
 
 
 def perdi_item(request):
     if request.method == "POST":
         lista_itens = Formulario(request.POST)
         if lista_itens.is_valid():
-            title = lista_itens.cleaned_data['Título'] # noqa
-            description = lista_itens.cleaned_data['Descrição']# noqa
-            itens = lista_itens.save() # noqa
+            item = lista_itens.save(commit=False)
+            item.Status = 'perdido'
+            item.save()
             return render(request, 'ifinder/pages/cadastro_concluido.html')
     else:
         lista_itens = Formulario()
@@ -35,9 +41,9 @@ def encontrei_item(request):
     if request.method == "POST":
         lista_itens = Formulario(request.POST)
         if lista_itens.is_valid():
-            title = lista_itens.cleaned_data['Título'] # noqa
-            description = lista_itens.cleaned_data['Descrição'] # noqa
-            itens = lista_itens.save() # noqa
+            item = lista_itens.save(commit=False)
+            item.Status = 'encontrado'
+            item.save()
             return render(request, 'ifinder/pages/cadastro_concluido.html')
     else:
         lista_itens = Formulario()

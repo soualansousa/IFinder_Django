@@ -15,7 +15,7 @@ class Item(models.Model):
     Autor = models.ForeignKey(
         User, on_delete=models.SET_NULL, null=True
     )
-    Status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='perdido')
+    Status = models.CharField(max_length=10, choices=STATUS_CHOICES)
 
     def __str__(self):
         return self.Título
