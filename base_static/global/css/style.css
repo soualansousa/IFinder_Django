@@ -274,21 +274,32 @@ textarea {
     min-width: 25rem;
     border-radius: 1rem;
     box-shadow: -5px 5px 10px rgba(0, 0, 0, .2);
+    display: flex;
+    align-items: center;
+    padding: 0.3rem;
+    flex-direction: column;
 }
- 
-.objeto-header{
+
+.objeto-informacao{
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 0.3rem;
+    flex-flow: column;
 }
- 
+
+.objeto-cabecalho{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
 .objeto-titulo{
     width: 80%;
     padding: 0.5rem 0;
 }
  
-.data-icon{
+.objeto-data{
     display: flex;
 }
  

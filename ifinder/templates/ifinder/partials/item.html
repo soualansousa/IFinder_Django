@@ -1,16 +1,18 @@
     <div class="objeto">
-        <div class="objeto-header">
-            <div class="objeto-imagem">
-                <img src="{{Items.Imagem.url}}" alt="{{Items.Título}}">
-            </div>
-            <div class="objeto-titulo">
-                <h3>{{Items.Título}}</h3>
-            </div>
-            <div class="data-icon">
-                <p>{{Items.Data|date:"d/m/Y"}}</p>
-            </div>
+        <div class="objeto-imagem">
+            <img src="{{Items.Imagem.url}}" alt="{{Items.Título}}">
         </div>
-        <div class="objeto-descrição">
-            <p>{{Items.Descrição}}</p>
+        <div class="objeto-informacao">
+            <div class="objeto-cabecalho">
+                <div class="objeto-titulo">
+                    <h3>{{Items.Título}}</h3>
+                </div>
+                <div class="objeto-data">
+                    <p>{{Items.Data|date:"d/m/Y"}}</p>
+                </div>
+            </div>
+            <div class="objeto-descrição">
+                <p>{{Items.Descrição}}</p>
+            </div>
         </div>
     </div>
