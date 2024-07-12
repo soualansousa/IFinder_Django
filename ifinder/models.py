@@ -1,3 +1,6 @@
+from PIL import Image
+from django import forms
+from django.core.files.uploadedfile import SimpleUploadedFile
 from django.db import models
 from django.contrib import admin
 from django.contrib.auth.models import User
@@ -9,9 +12,10 @@ class Item(models.Model):
         ('encontrado', 'Encontrado'),
     ]
     Título = models.CharField(max_length=65)
-    Descrição = models.CharField(max_length=165)
+    Descrição = models.TextField(max_length=165)
     Publicada = models.BooleanField(default=False)
     Data = models.DateTimeField(auto_now_add=True)
+    Imagem = models.ImageField(default='item.png', blank=True)
     Autor = models.ForeignKey(
         User, on_delete=models.SET_NULL, null=True
     )
