@@ -13,26 +13,22 @@ def home(request):
 
 
 def lista_itens(request):
-    status = request.GET.get('status')
-    if status:
-        itens = Item.objects.filter(status=status)
-    else:
-        itens = Item.objects.all()
-    
-    return render(request, "ifinder/pages/lista-itens.html", {'itens': itens})
+    itens = Item.objects.all()  # .order_by('-id')
+
+    return render(request, "ifinder/pages/lista-itens.html", context={'itens': itens})  # noqa
 
 
 def perdi_item(request):
     if request.method == "POST":
         lista_itens = Formulario(request.POST)
         if lista_itens.is_valid():
-            item = lista_itens.save(commit=False)
-            item.status = 'perdido'
-            item.save()
+            title = lista_itens.cleaned_data['Título'] # noqa
+            description = lista_itens.cleaned_data['Descrição']# noqa
+            itens = lista_itens.save() # noqa
             return render(request, 'ifinder/pages/cadastro-concluido.html')
     else:
         lista_itens = Formulario()
-    return render(request, "ifinder/pages/perdi-item.html", {'itens': lista_itens})
+    return render(request, "ifinder/pages/perdi-item.html", {'itens': lista_itens}) # noqa
 
 
 def encontrei_item(request):
@@ -58,8 +54,8 @@ def user_login(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return HttpResponse('Authenticated',
-                        successfully')
+                    return HttpResponse ('Authenticated',
+                        'successfully')
                 else:
                     return HttpResponse('Disabled account')
             else:
