@@ -15,7 +15,7 @@ def home(request):
 def lista_itens(request):
     itens = Item.objects.all()  # .order_by('-id')
 
-    return render(request, "ifinder/pages/lista-itens.html", context={'itens': itens})  # noqa
+    return render(request, "ifinder/pages/lista_itens.html", context={'itens': itens})  # noqa
 
 
 def perdi_item(request):
@@ -25,10 +25,10 @@ def perdi_item(request):
             title = lista_itens.cleaned_data['Título'] # noqa
             description = lista_itens.cleaned_data['Descrição']# noqa
             itens = lista_itens.save() # noqa
-            return render(request, 'ifinder/pages/cadastro-concluido.html')
+            return render(request, 'ifinder/pages/cadastro_concluido.html')
     else:
         lista_itens = Formulario()
-    return render(request, "ifinder/pages/perdi-item.html", {'itens': lista_itens}) # noqa
+    return render(request, "ifinder/pages/perdi_item.html", {'itens': lista_itens}) # noqa
 
 
 def encontrei_item(request):
@@ -38,10 +38,10 @@ def encontrei_item(request):
             title = lista_itens.cleaned_data['Título'] # noqa
             description = lista_itens.cleaned_data['Descrição'] # noqa
             itens = lista_itens.save() # noqa
-            return render(request, 'ifinder/pages/cadastro-concluido.html')
+            return render(request, 'ifinder/pages/cadastro_concluido.html')
     else:
         lista_itens = Formulario()
-    return render(request, "ifinder/pages/encontrei-item.html", {'itens': lista_itens}) # noqa
+    return render(request, "ifinder/pages/encontrei_item.html", {'itens': lista_itens}) # noqa
 
 
 def user_login(request):
@@ -62,4 +62,4 @@ def user_login(request):
                 return HttpResponse('Invalid Login')
     else:
         form = LoginForm()
-    return render(request, 'ifinder/pages/login-page.html', {'form': form})
+    return render(request, 'ifinder/pages/login_page.html', {'form': form})
