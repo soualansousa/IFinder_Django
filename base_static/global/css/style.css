@@ -288,6 +288,11 @@ textarea {
     flex-flow: column;
 }
 
+.objeto-imagem img{
+    max-width: 200px;
+    max-height: 200px;
+}
+
 .objeto-cabecalho{
     display: flex;
     justify-content: space-around;

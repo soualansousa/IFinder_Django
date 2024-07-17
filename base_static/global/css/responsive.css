@@ -55,4 +55,9 @@
     .menu-cadastrar input, textarea{
         width: 100%;
     }
+
+    .objeto-imagem img{
+        max-width: 100px;
+        max-height: 100px;
+    }
 }
