@@ -15,7 +15,7 @@ class Item(models.Model):
     Descrição = models.TextField(max_length=165)
     Publicada = models.BooleanField(default=False)
     Data = models.DateTimeField(auto_now_add=True)
-    Imagem = models.ImageField(default='item.png', blank=True)
+    Imagem = models.ImageField(blank=False)
     Autor = models.ForeignKey(
         User, on_delete=models.SET_NULL, null=True
     )
