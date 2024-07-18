@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponseRedirect # noqa
+from django.shortcuts import render, HttpResponseRedirect, redirect # noqa
 from utils.ifinder.factory import make_recipe  # noqa
 from .models import Item
 from django.urls import reverse_lazy # noqa
@@ -6,7 +6,7 @@ from .forms import Formulario,LoginForm
 from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
-
+from django.contrib.auth.forms import AuthenticationForm
 
 def home(request):
     return render(request, "ifinder/pages/home.html")
@@ -50,22 +50,12 @@ def encontrei_item(request):
     return render(request, "ifinder/pages/encontrei_item.html", {'itens': lista_itens}) # noqa
 
 
-def user_login(request):
+def login(request):
     if request.method == 'POST':
-        form = LoginForm(request.POST)
+        form = AuthenticationForm(data=request.POST)
         if form.is_valid():
-            cd = form.cleaned_data
-            user = authenticate(username=cd['username'],
-                   password=cd['password'])
-            if user is not None:
-                if user.is_active:
-                    login(request, user)
-                    return HttpResponse('Authenticated',
-                        'successfully')
-                else:
-                    return HttpResponse('Disabled account')
-            else:
-                return HttpResponse('Invalid Login')
+            login(request, form.get_user())
+            return redirect("ifinder:login_page")
     else:
-        form = LoginForm()
+        form = AuthenticationForm()
     return render(request, 'ifinder/pages/login_page.html', {'form': form})

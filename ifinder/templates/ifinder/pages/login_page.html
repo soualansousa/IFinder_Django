@@ -4,27 +4,17 @@
 {% block content %}
     <h1 class="topo-login">Login</h1>
    <div class="display-menu-formulario"> 
-        <form method="post">
+        <form method="post" action="/">
             <div class="form-login">
                 {% csrf_token %}
-                {{ form.as_p }}
+                {{ form }}
             </div>
-            <div>
+            {% comment %} <div>
                 <a class="password" href="#">Esqueceu a senha?</a>
-            </div>
-            <button type="submit" class="botao-enviar">Login</button>
+            </div> {% endcomment %}
+            <button class="botao-enviar">Login</button>
          
         </form>
     </div>
-
-
-
-
-
-
-
-
-
-
 
 {% endblock content %}
