@@ -50,12 +50,12 @@ def encontrei_item(request):
     return render(request, "ifinder/pages/encontrei_item.html", {'itens': lista_itens}) # noqa
 
 
-def login(request):
+def user_login(request):
     if request.method == 'POST':
         form = AuthenticationForm(data=request.POST)
         if form.is_valid():
             login(request, form.get_user())
-            return redirect("ifinder:login_page")
+            return redirect("ifinder:home")
     else:
         form = AuthenticationForm()
     return render(request, 'ifinder/pages/login_page.html', {'form': form})
