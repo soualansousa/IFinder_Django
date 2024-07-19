@@ -2,7 +2,7 @@ from django.shortcuts import render, HttpResponseRedirect, redirect # noqa
 from utils.ifinder.factory import make_recipe  # noqa
 from .models import Item
 from django.urls import reverse_lazy # noqa
-from .forms import Formulario,LoginForm
+from .forms import Formulario
 from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
