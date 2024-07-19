@@ -34,17 +34,20 @@ def perdi_item(request):
             return render(request, 'ifinder/pages/cadastro_concluido.html')
     else:
         lista_itens = Formulario()
+
     return render(request, "ifinder/pages/perdi_item.html", {'itens': lista_itens}) # noqa
 
 
 def encontrei_item(request):
     if request.method == "POST":
-        lista_itens = Formulario(request.POST)
+        lista_itens = Formulario(request.POST, request.FILES)
         if lista_itens.is_valid():
             item = lista_itens.save(commit=False)
             item.Status = 'encontrado'
             item.save()
             return render(request, 'ifinder/pages/cadastro_concluido.html')
+        else:
+            print(lista_itens.errors)
     else:
         lista_itens = Formulario()
     return render(request, "ifinder/pages/encontrei_item.html", {'itens': lista_itens}) # noqa

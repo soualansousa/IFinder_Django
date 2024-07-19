@@ -7,7 +7,7 @@
     <h2 class="topo-login">Encontrei um item</h2>
 
     <div class="display-menu-formulario">
-        <form id="formulario" method="post" action="">
+        <form id="formulario" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {% for field in itens  %}
             <div class="menu-cadastrar">

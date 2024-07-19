@@ -1,3 +1,5 @@
+from django.conf import settings
+from django.conf.urls.static import static
 from django.urls import path
 from . import views
 app_name = 'ifinder'
@@ -9,3 +11,6 @@ urlpatterns = [
     path('home/perdi_item/', views.perdi_item, name='perdi_item'),
     path('home/encontrei_item/', views.encontrei_item, name='encontrei_item'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
