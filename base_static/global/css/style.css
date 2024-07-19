@@ -326,11 +326,28 @@ textarea {
 }
 .form-login{
     display: flex;
-    width: 253px;
-    padding: 7px 10px;
+    width: 51.8rem;
+    padding: 0.4375rem 0.625rem;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 0.625rem;
     flex-flow: column;
     border-radius: 5px;
+    
+}
+.input-login{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1 0 0;
+    align-self: stretch;
+    color: var(--menu-color );
+    text-align: center;
+    font-family: Roboto;
+    font-size: 0.9375rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    font-size: 1.5rem;
+
 }
