@@ -7,7 +7,12 @@
         <form method="post" action="/">
             <div class="form-login">
                 {% csrf_token %}
-                {{ form }}
+                {% for field in form %}
+                <div class="input-login">
+                    {{field.label_tag}}
+                    {{field}}
+                </div>
+                {% endfor %}
             </div>
             <button class="botao-enviar">Login</button>
          

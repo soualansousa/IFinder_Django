@@ -19,13 +19,6 @@
 
     .botao-enviar{
         width: 26rem;
-        padding: 1rem;
-        gap: 1rem;
-        border-radius: 0.5rem;
-        border: 0.2rem solid var(--botton-color-green);
-        background: var(--botton-color-green);
-        color: var(--background-color);
-        margin-bottom: 1.5rem;
     }
     .display-menu .botoes-home {
         width: 26rem;
@@ -59,5 +52,9 @@
     .objeto-imagem img{
         max-width: 100px;
         max-height: 100px;
+    }
+    
+    .form-login{
+        width: 26rem;
     }
 }
