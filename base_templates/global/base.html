@@ -16,19 +16,25 @@
     {% block head %}{% endblock head %}
 </head>
 <body>
-    <header>
-       <div class="nav-menu-home">
-            <a href="/home/">
-                <i class="fa-solid fa-house"></i>
-            </a>
-        </div>
-        <h1>IFinder</h1>
-        <div class="nav-menu-logout">
-            <a href="/">
-                <i class="fa-solid fa-right-from-bracket"></i>
-            </a>
-        </div>
-    </header>
+    {% if request.resolver_match.url_name != 'login'  %}
+        <header>
+        <div class="nav-menu-home">
+                <a href="/home/">
+                    <i class="fa-solid fa-house"></i>
+                </a>
+            </div>
+            <h1>IFinder</h1>
+            <div class="nav-menu-logout">
+                <a href="/">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </a>
+            </div>
+        </header>
+    {% elif request.resolver_match.url_name == 'login'   %}
+        <header class="top-sem-icon">
+                <h1>IFinder</h1>
+        </header>
+    {% endif %}
  {% block content %}
  {% endblock content %} 
 </body>
