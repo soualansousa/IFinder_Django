@@ -181,6 +181,8 @@ textarea {
     color: var(--background-color);
     margin: 1.5rem 0;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
 }
 
 .botao-enviar:hover{
