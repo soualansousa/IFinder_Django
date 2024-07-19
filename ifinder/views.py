@@ -26,7 +26,7 @@ def lista_itens(request):
 
 def perdi_item(request):
     if request.method == "POST":
-        lista_itens = Formulario(request.POST)
+        lista_itens = Formulario(request.POST, request.FILES)
         if lista_itens.is_valid():
             item = lista_itens.save(commit=False)
             item.Status = 'perdido'
