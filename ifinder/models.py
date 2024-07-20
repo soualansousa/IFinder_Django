@@ -1,8 +1,4 @@
-from PIL import Image # noqa
-from django import forms # noqa
-from django.core.files.uploadedfile import SimpleUploadedFile # noqa
-from django.db import models # noqa
-from django.contrib import admin # noqa
+from django.db import models
 from django.contrib.auth.models import User
 from django.utils.safestring import mark_safe
 
@@ -20,13 +16,11 @@ class Item(models.Model):
     Autor = models.ForeignKey(
         User, on_delete=models.SET_NULL, null=True
     )
-    Status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='Perdido') # noqa
+    Status = models.CharField(max_length=10, choices=STATUS_CHOICES) # noqa
 
     def __str__(self):
         return self.Título
-    
+
     def Foto(self):
         self.Imagem
         return mark_safe('<img src="{}" height="50" />' .format(self.Imagem.url)) # noqa
-    
-    

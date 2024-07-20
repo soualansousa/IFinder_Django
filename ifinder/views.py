@@ -1,12 +1,8 @@
-from django.shortcuts import render, HttpResponseRedirect, redirect # noqa
-from utils.ifinder.factory import make_recipe  # noqa
+from django.shortcuts import render, redirect
 from .models import Item
-from django.urls import reverse_lazy # noqa
 from .forms import Formulario
-from django.http import HttpResponse # noqa
-from django.contrib import messages # noqa
-from django.contrib.auth import authenticate, login # noqa
-from django.contrib.auth.forms import AuthenticationForm # noqa
+from django.contrib.auth import login
+from django.contrib.auth.forms import AuthenticationForm
 
 
 def home(request):
