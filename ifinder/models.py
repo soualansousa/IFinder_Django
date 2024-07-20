@@ -4,6 +4,7 @@ from django.core.files.uploadedfile import SimpleUploadedFile # noqa
 from django.db import models # noqa
 from django.contrib import admin # noqa
 from django.contrib.auth.models import User
+from django.utils.safestring import mark_safe
 
 
 class Item(models.Model):
@@ -23,3 +24,9 @@ class Item(models.Model):
 
     def __str__(self):
         return self.Título
+    
+    def Foto(self):
+        self.Imagem
+        return mark_safe('<img src="{}" height="50" />' .format(self.Imagem.url)) # noqa
+    
+    
