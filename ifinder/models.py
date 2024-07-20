@@ -16,6 +16,7 @@ class Item(models.Model):
     Autor = models.ForeignKey(
         User, on_delete=models.SET_NULL, null=True
     )
+    Devolvido = models.BooleanField(default=False)
     Status = models.CharField(max_length=10, choices=STATUS_CHOICES) # noqa
 
     def __str__(self):
