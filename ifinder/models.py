@@ -1,8 +1,8 @@
-from PIL import Image
-from django import forms
-from django.core.files.uploadedfile import SimpleUploadedFile
-from django.db import models
-from django.contrib import admin
+from PIL import Image # noqa
+from django import forms # noqa
+from django.core.files.uploadedfile import SimpleUploadedFile # noqa
+from django.db import models # noqa
+from django.contrib import admin # noqa
 from django.contrib.auth.models import User
 
 

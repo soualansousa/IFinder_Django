@@ -3,10 +3,11 @@ from utils.ifinder.factory import make_recipe  # noqa
 from .models import Item
 from django.urls import reverse_lazy # noqa
 from .forms import Formulario
-from django.http import HttpResponse
-from django.contrib import messages
-from django.contrib.auth import authenticate, login
-from django.contrib.auth.forms import AuthenticationForm
+from django.http import HttpResponse # noqa
+from django.contrib import messages # noqa
+from django.contrib.auth import authenticate, login # noqa
+from django.contrib.auth.forms import AuthenticationForm # noqa
+
 
 def home(request):
     return render(request, "ifinder/pages/home.html")
@@ -20,8 +21,7 @@ def lista_itens(request):
         itens = Item.objects.filter(Status='encontrado', Publicada=True)
     else:
         itens = Item.objects.filter(Publicada=True)
-    
-    return render(request, "ifinder/pages/lista_itens.html", {'itens': itens, 'status': status})
+    return render(request, "ifinder/pages/lista_itens.html", {'itens': itens, 'status': status}) # noqa
 
 
 def perdi_item(request):
