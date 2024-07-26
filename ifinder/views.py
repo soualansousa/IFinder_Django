@@ -3,8 +3,9 @@ from .models import Item
 from .forms import Formulario
 from django.contrib.auth import login
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.decorators import login_required
 
-
+@login_required
 def home(request):
     return render(request, "ifinder/pages/home.html")
 
@@ -26,6 +27,7 @@ def perdi_item(request):
         if lista_itens.is_valid():
             item = lista_itens.save(commit=False)
             item.Status = 'perdido'
+            item.Autor = request.user
             item.save()
             return render(request, 'ifinder/pages/cadastro_concluido.html')
     else:
@@ -40,6 +42,7 @@ def encontrei_item(request):
         if lista_itens.is_valid():
             item = lista_itens.save(commit=False)
             item.Status = 'encontrado'
+            item.Autor = request.user
             item.save()
             return render(request, 'ifinder/pages/cadastro_concluido.html')
         else:

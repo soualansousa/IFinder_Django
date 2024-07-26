@@ -15,7 +15,7 @@ class Item(models.Model):
     Imagem = models.ImageField(null=True, max_length=300)
     Autor = models.ForeignKey(
         User, on_delete=models.SET_NULL, null=True
-    )
+        )
     Devolvido = models.BooleanField(default=False)
     Status = models.CharField(max_length=10, choices=STATUS_CHOICES) # noqa
 
