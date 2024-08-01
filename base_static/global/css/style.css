@@ -363,3 +363,7 @@ textarea {
 .pagination ul {
     list-style: none;
 }
+
+.disabled {
+    display: none;
+}

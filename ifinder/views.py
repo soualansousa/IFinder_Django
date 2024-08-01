@@ -14,7 +14,7 @@ def home(request):
 def lista_itens(request):
     status = request.GET.get('status', 'todos')
     lista_itens = Item.objects.all()
-    lista_paginada = Paginator(lista_itens, 20)
+    lista_paginada = Paginator(lista_itens, 3)
     p = request.GET.get("p")
     try:
         pagina = lista_paginada.page(p)

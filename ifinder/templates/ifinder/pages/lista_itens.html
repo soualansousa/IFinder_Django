@@ -20,29 +20,42 @@
     </div>
 
     <nav class="pagination">
+        {% if itens.number <= 1 %}
+            <ul>
+                <li class="disabled">
+                    <a href="#">Primeira</a>
+                </li>
+            </ul>
+            <ul>
+                <li class="disabled"> 
+                    <a href="#">Anterior</a>
+                </li>
+            </ul>
+        {% else  %}
+            <ul>
+                <li>
+                    <a href="?p=1"> &laquo; Primeira</a>
+                </li>
+            </ul>
+            <ul>
+                <li> 
+                    <a href="">Anterior</a>
+                </li>
+            </ul>
+        {% endif %}
         <ul>
             <li>
-                <a href="#">Primeira</a>
+                <a href="">{{itens.number}}</a>
             </li>
         </ul>
         <ul>
             <li>
-                <a href="#">Anterior</a>
+                <a href="?p={{itens.}}">Próxima</a>
             </li>
         </ul>
         <ul>
             <li>
-                <a href="#">1</a>
-            </li>
-        </ul>
-        <ul>
-            <li>
-                <a href="#">Próxima</a>
-            </li>
-        </ul>
-        <ul>
-            <li>
-                <a href="#">Última</a>
+                <a href="#">Última &raquo;</a>
             </li>
         </ul>
     </nav>

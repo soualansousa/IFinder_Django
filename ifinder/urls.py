@@ -7,7 +7,7 @@ app_name = 'ifinder'
 urlpatterns = [
     path('', views.user_login, name='login'),
     path('home/', views.home, name='home'),
-    path('home/lista_itens/', views.lista_itens, name="lista_paginada"),
+    path('home/lista_itens/', views.lista_itens, name="lista_itens"),
     path('home/perdi_item/', views.perdi_item, name='perdi_item'),
     path('home/encontrei_item/', views.encontrei_item, name='encontrei_item'),
 ]
