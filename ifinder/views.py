@@ -4,7 +4,7 @@ from .forms import Formulario
 from django.contrib.auth import login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 @login_required
 def home(request):
@@ -12,19 +12,25 @@ def home(request):
 
 
 def lista_itens(request):
-    lista_itens = Item.objects.all()
-    lista_paginada = Paginator(lista_itens, 5)
-    p = request.GET.get("p")
-    pagina = lista_paginada.page(p)
-
     status = request.GET.get('status', 'todos')
-    if status == 'perdido':
-        itens = Item.objects.filter(Status='perdido', Publicada=True)
-    elif status == 'encontrado':
-        itens = Item.objects.filter(Status='encontrado', Publicada=True)
-    else:
-        itens = Item.objects.filter(Publicada=True)
-    return render(request, "ifinder/pages/lista_itens.html", {'itens': itens, 'status': status}) # noqa
+    lista_itens = Item.objects.all()
+    lista_paginada = Paginator(lista_itens, 20)
+    p = request.GET.get("p")
+    try:
+        pagina = lista_paginada.page(p)
+    except PageNotAnInteger:
+        pagina = lista_paginada.page(1)
+    except EmptyPage:
+        pagina = lista_paginada.page(1)
+
+    # if status == 'perdido':
+    #         lista_paginada = Item.objects.filter(Status='perdido', Publicada=True)
+    # elif status == 'encontrado':
+    #     lista_paginada = Item.objects.filter(Status='encontrado', Publicada=True)
+    # else:
+    #     lista_paginada = Item.objects.filter(Publicada=True)
+
+    return render(request, "ifinder/pages/lista_itens.html", {'itens': pagina, 'status': status})
 
 
 def perdi_item(request):
