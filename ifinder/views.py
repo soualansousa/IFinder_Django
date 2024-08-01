@@ -4,6 +4,7 @@ from .forms import Formulario
 from django.contrib.auth import login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 
 @login_required
 def home(request):
@@ -11,6 +12,11 @@ def home(request):
 
 
 def lista_itens(request):
+    lista_itens = Item.objects.all()
+    lista_paginada = Paginator(lista_itens, 5)
+    p = request.GET.get("p")
+    pagina = lista_paginada.page(p)
+
     status = request.GET.get('status', 'todos')
     if status == 'perdido':
         itens = Item.objects.filter(Status='perdido', Publicada=True)
