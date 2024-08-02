@@ -13,8 +13,15 @@ def home(request):
 
 def lista_itens(request):
     status = request.GET.get('status', 'todos')
-    lista_itens = Item.objects.all()
-    lista_paginada = Paginator(lista_itens, 3)
+
+    if status == 'perdido':
+            lista_itens = Item.objects.filter(Status='perdido', Publicada=True)
+    elif status == 'encontrado':
+        lista_itens = Item.objects.filter(Status='encontrado', Publicada=True)
+    else:
+        lista_itens = Item.objects.filter(Publicada=True)
+
+    lista_paginada = Paginator(lista_itens, 5)
     p = request.GET.get("p")
     try:
         pagina = lista_paginada.page(p)
@@ -22,13 +29,6 @@ def lista_itens(request):
         pagina = lista_paginada.page(1)
     except EmptyPage:
         pagina = lista_paginada.page(1)
-
-    # if status == 'perdido':
-    #         lista_paginada = Item.objects.filter(Status='perdido', Publicada=True)
-    # elif status == 'encontrado':
-    #     lista_paginada = Item.objects.filter(Status='encontrado', Publicada=True)
-    # else:
-    #     lista_paginada = Item.objects.filter(Publicada=True)
 
     return render(request, "ifinder/pages/lista_itens.html", {'itens': pagina, 'status': status})
 
