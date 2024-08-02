@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ifinder',
+    
 ]
 
 MIDDLEWARE = [
@@ -134,3 +136,24 @@ STATIC_ROOT = BASE_DIR / 'static'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+JAZZMIN_SETTINGS = {
+    # title of the window (Will default to current_admin_site.site_title if absent or None)
+    "site_title": "Painel adm",
+    "site_header": "Library",
+    "site_brand": "IFinder",
+    "topmenu_links": [
+
+        # Url that gets reversed (Permissions can be added)
+        {"name": "Home",  "url": "admin:index", "permissions": ["auth.view_user"]},
+
+        # external url that opens in a new window (Permissions can be added),
+
+        # model admin to link to (Permissions checked against model)
+        {"model": "auth.User"},
+
+        # App with dropdown menu to all its models pages (Permissions checked against models)
+        {"app": "ifinder"},
+
+    ],
+}
+JAZZMIN_SETTINGS["show_ui_builder"] = True
