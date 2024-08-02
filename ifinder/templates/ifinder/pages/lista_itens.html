@@ -20,10 +20,21 @@
     </div>
 
     <nav class="pagination">
-        {% if itens.number <= 1 %}
+        {% if itens.has_previous %}
+            <ul>
+                <li class="page-item">
+                    <a href="?status={{ status }}&p=1">&laquo;</a>
+                </li>
+            </ul>
+            <ul>
+                <li class="page-item"> 
+                    <a href="?status={{ status }}&p={{ itens.previous_page_number }}">Anterior</a>
+                </li>
+            </ul>
+        {% else  %}
             <ul>
                 <li class="disabled">
-                    <a href="#">Primeira</a>
+                    <a href="#">&laquo;</a>
                 </li>
             </ul>
             <ul>
@@ -31,33 +42,35 @@
                     <a href="#">Anterior</a>
                 </li>
             </ul>
-        {% else  %}
-            <ul>
-                <li>
-                    <a href="?p=1"> &laquo; Primeira</a>
-                </li>
-            </ul>
-            <ul>
-                <li> 
-                    <a href="#">Anterior</a>
-                </li>
-            </ul>
         {% endif %}
         <ul>
-            <li>
+            <li class="page-item">
                 <a href="">{{itens.number}}</a>
             </li>
         </ul>
-        <ul>
-            <li>
-                <a href="?p={{itens.}}">Próxima</a>
-            </li>
-        </ul>
-        <ul>
-            <li>
-                <a href="#">Última &raquo;</a>
-            </li>
-        </ul>
+        {% if itens.has_next %}
+            <ul>
+                <li class="page-item">
+                    <a href="?status={{ status }}&p={{ itens.next_page_number }}">Próxima</a>
+                </li>
+            </ul>
+            <ul>
+                <li class="page-item">
+                    <a href="?status={{ status }}&p={{ itens.paginator.num_pages }}">&raquo;</a>
+                </li>
+            </ul>
+        {% else %}
+            <ul>
+                <li class="disabled">
+                    <a href="">Próxima</a>
+                </li>
+            </ul>
+            <ul>
+                <li class="disabled">
+                    <a href="#">&raquo;</a>
+                </li>
+            </ul>
+        {% endif %}
     </nav>
 
     <script>
