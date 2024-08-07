@@ -1,0 +1,24 @@
+:root {
+    --background-color: rgb(246, 246, 246);
+    --menu-color: rgb(41, 41, 41);
+    --menu-color-50: rgba(41, 41, 41,0.50);
+    --botton-color-green: rgb(37,162,90);
+    --botton-color-red: rgb(174, 25, 25);
+    --float-box: rgb(255, 255, 255);
+    --text-header: rgb(238, 238, 238);
+    --content-box: rgb(237, 237, 237);
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    background-color: var(--background-color);
+}
