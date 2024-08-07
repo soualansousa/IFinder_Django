@@ -9,6 +9,7 @@ class CustomAdminSite(admin.AdminSite):
     def index(self, request, extra_context=None):
         return HttpResponseRedirect(reverse('custom_dashboard'))
 
+
 class ItemAdmin(admin.ModelAdmin):
     list_display = ('Foto', 'Título', 'Descrição', 'Data', 'Autor')
     search_fields = ('Título',)
@@ -30,6 +31,6 @@ class ItemAdmin(admin.ModelAdmin):
     actions = [mark_as_published, mark_as_returned]
 
 
-
-admin.site.register(Item, ItemAdmin)
 admin_site = CustomAdminSite(name='custom_admin')
+admin.site.register(Item, ItemAdmin)
+

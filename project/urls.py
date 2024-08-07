@@ -7,8 +7,8 @@ from ifinder.admin import admin_site
 
 
 urlpatterns = [
-    path('admin/custom-dashboard/', views.custom_dashboard,),
     path('admin/', admin.site.urls),
+    path('admin/custom-dashboard/', views.custom_dashboard, name='custom_dashboard'),
     path('',include('ifinder.urls')),
 ]
 
