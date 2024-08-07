@@ -1,0 +1,20 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+<h2>{% trans "Login" %}</h2>
+<form method="post" action="{% url 'admin:login' %}">{% csrf_token %}
+<table>
+  <tr>
+    <th><label for="id_username">{% trans "Username" %}:</label></th>
+    <td><input type="text" name="username" id="id_username" value="{% if form.errors %}{{ form.username.value }}{% endif %}" autofocus></td>
+  </tr>
+  <tr>
+    <th><label for="id_password">{% trans "Password" %}:</label></th>
+    <td><input type="password" name="password" id="id_password"></td>
+  </tr>
+</table>
+<div class="submit-row">
+  <input type="submit" value="{% trans 'Log in' %}">
+</div>
+</form>
+{% endblock %}
