@@ -2,13 +2,17 @@ from django.shortcuts import render, redirect
 from .models import Item
 from .forms import Formulario
 from django.contrib.auth import login
+
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+
+
 @staff_member_required
 def custom_dashboard(request):
     return render(request, 'admin/custom-dashboard.html')
+
 
 @login_required
 def home(request):
@@ -19,7 +23,7 @@ def lista_itens(request):
     status = request.GET.get('status', 'todos')
 
     if status == 'perdido':
-            lista_itens = Item.objects.filter(Status='perdido', Publicada=True)
+        lista_itens = Item.objects.filter(Status='perdido', Publicada=True)
     elif status == 'encontrado':
         lista_itens = Item.objects.filter(Status='encontrado', Publicada=True)
     else:
@@ -34,7 +38,7 @@ def lista_itens(request):
     except EmptyPage:
         pagina = lista_paginada.page(1)
 
-    return render(request, "ifinder/pages/lista_itens.html", {'itens': pagina, 'status': status})
+    return render(request, "ifinder/pages/lista_itens.html", {'itens': pagina, 'status': status}) # noqa
 
 
 def perdi_item(request):

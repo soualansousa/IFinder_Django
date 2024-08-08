@@ -3,13 +3,13 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 from ifinder import views
-from ifinder.admin import admin_site
+from ifinder.admin import admin_site # noqa
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('admin/custom-dashboard/', views.custom_dashboard, name='custom_dashboard'),
-    path('',include('ifinder.urls')),
+    path('admin/custom-dashboard/', views.custom_dashboard, name='custom_dashboard'), # noqa
+    path('', include('ifinder.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

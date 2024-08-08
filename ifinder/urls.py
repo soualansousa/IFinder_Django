@@ -8,7 +8,7 @@ app_name = 'ifinder'
 
 urlpatterns = [
     path('admin/', admin_site.urls),
-    path('admin/custom-dashboard/', views.custom_dashboard, name='custom_dashboard'),
+    path('admin/custom-dashboard/', views.custom_dashboard, name='custom_dashboard'), # noqa
     path('', views.user_login, name='login'),
     path('home/', views.home, name='home'),
     path('home/lista_itens/', views.lista_itens, name="lista_itens"),

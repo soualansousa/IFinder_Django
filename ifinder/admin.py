@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import reverse
-from django.utils.html import format_html
+from django.utils.html import format_html # noqa
 from django.http import HttpResponseRedirect
 from .models import Item
 
@@ -19,7 +19,7 @@ class ItemAdmin(admin.ModelAdmin):
 
     def mark_as_published(self, request, queryset):
         updated_count = queryset.update(Publicada=True)
-        self.message_user(request, f"{updated_count} os itens foram marcados como publicados com sucesso.") # noqa
+        self.message_user(request, f"{updated_count} os itens foram marcados como publicados com sucesso.")  # noqa
 
     def mark_as_returned(self, request, queryset):
         updated_count = queryset.update(Devolvido=True, Publicada=False)
@@ -33,4 +33,3 @@ class ItemAdmin(admin.ModelAdmin):
 
 admin_site = CustomAdminSite(name='custom_admin')
 admin.site.register(Item, ItemAdmin)
-
