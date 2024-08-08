@@ -30,7 +30,12 @@
                 </a>
             </div>
         </header>
-    {% elif request.resolver_match.url_name == 'login'   %}
+    {% elif request.resolver_match.url_name == 'login'  %}
+        <header class="top-sem-icon">
+                <h1>IFinder</h1>
+        </header>
+        
+    {% elif request.resolver_match.url_name == 'administrativo'  %}
         <header class="top-sem-icon">
                 <h1>IFinder</h1>
         </header>
