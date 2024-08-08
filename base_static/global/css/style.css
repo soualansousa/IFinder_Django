@@ -187,8 +187,6 @@ textarea {
 
 .botao-enviar:hover{
     opacity: 0.8;
-    background: var(--botton-color-green);
-    color: var(--background-color);
 }
 
 .menu-cadastrar{
@@ -204,29 +202,6 @@ textarea {
 }
 .menu-cadastrar input, textarea{
     width: 100%;
-}
-
-.botao-enviar{
-    padding: 1rem;
-    gap: 1rem;
-    border-radius: 0.5rem;
-    background: var(--botton-color-green);
-    color: #FFF;
-    margin: 1.5rem 0;
-    cursor: pointer;
-    border: 0.2rem solid var(--botton-color-green);
-}
-
-.botao-enviar:hover{
-    opacity: 0.8;
-    padding: 1rem;
-    gap: 1rem;
-    border-radius: 0.5rem;
-    background: var(--bot0pxton-color-green);
-    color: rgb(17, 17, 17);
-    margin: 1.5rem 0;
-    cursor: pointer;
-    border: 0.2rem solid var(--botton-color-green);
 }
 
 .sair-IFinder{
@@ -348,6 +323,10 @@ textarea {
     text-align: center;
     font-size: 1.5rem;
 
+}
+
+.input-login input{
+    padding: 0.5rem;
 }
 
 .pagination {
