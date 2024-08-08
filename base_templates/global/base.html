@@ -16,13 +16,14 @@
     {% block head %}{% endblock head %}
 </head>
 <body>
-    {% if request.resolver_match.url_name != 'login'  %}
+    {% if request.resolver_match.url_name == 'login'  %}
+        <header class="top-sem-icon">
+                <h1>IFinder</h1>
+        </header>
+            
+    {% elif request.resolver_match.url_name == 'admin_home'  %}
         <header>
-        <div class="nav-menu-home">
-                <a href="/home/">
-                    <i class="fa-solid fa-house"></i>
-                </a>
-            </div>
+            <i class="fa-solid fa-house invisebled"></i>
             <h1>IFinder</h1>
             <div class="nav-menu-logout">
                 <a href="/">
@@ -30,14 +31,20 @@
                 </a>
             </div>
         </header>
-    {% elif request.resolver_match.url_name == 'login'  %}
-        <header class="top-sem-icon">
+
+    {% else %}
+        <header>
+            <div class="nav-menu-home">
+                    <a href="/home/">
+                        <i class="fa-solid fa-house"></i>
+                    </a>
+            </div>
                 <h1>IFinder</h1>
-        </header>
-        
-    {% elif request.resolver_match.url_name == 'administrativo'  %}
-        <header class="top-sem-icon">
-                <h1>IFinder</h1>
+                <div class="nav-menu-logout">
+                    <a href="/">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </a>
+                </div>
         </header>
     {% endif %}
  {% block content %}

@@ -361,3 +361,7 @@ textarea {
 .disabled {
     display: none;
 }
+
+.invisebled {
+    color: var(--menu-color);
+}

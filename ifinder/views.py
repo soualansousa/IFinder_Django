@@ -72,7 +72,7 @@ def user_login(request):
             login(request, form.get_user())
         
             if form.get_user().is_superuser:
-                return redirect("administrativo:home")
+                return redirect("administrativo:admin_home")
             
             return redirect("ifinder:home")
     else:
