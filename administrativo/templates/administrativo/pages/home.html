@@ -1,11 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Opa</h1>
-</body>
-</html>
+{% extends 'global/base.html'%}
+{% block title %} | Página inicial{% endblock title %}
+{% block content %}
+    <main>
+        <h2 class="topo-login">O que deseja fazer?</h2>
+        <section>
+            <div class="display-menu">
+                <div class="botoes-home">
+                    <div class="logo-menu">
+                        <i class="fa-solid fa-bars"></i>
+                    </div>
+                    <a class="texto-menu" href="#">Ver lista de itens pendentes</a>
+                </div>
+                <div class="botoes-home">
+                    <div class="logo-menu">
+                        <i class="fa-solid fa-person-circle-plus"></i>
+                    </div>
+                    <a class="texto-menu" href="#">Cadastrar que encontrei um item</a>
+                </div>
+        </section>
+
+    </main>
+{% endblock content %}
