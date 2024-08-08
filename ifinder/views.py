@@ -5,13 +5,7 @@ from django.contrib.auth import login
 
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
-from django.contrib.admin.views.decorators import staff_member_required
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-
-
-@staff_member_required
-def custom_dashboard(request):
-    return render(request, 'admin/custom-dashboard.html')
 
 
 @login_required
