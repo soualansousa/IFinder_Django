@@ -1,13 +1,5 @@
 from django.contrib import admin
-from django.urls import reverse
-from django.utils.html import format_html # noqa
-from django.http import HttpResponseRedirect
 from .models import Item
-
-
-class CustomAdminSite(admin.AdminSite):
-    def index(self, request, extra_context=None):
-        return HttpResponseRedirect(reverse('custom_dashboard'))
 
 
 class ItemAdmin(admin.ModelAdmin):
@@ -31,5 +23,4 @@ class ItemAdmin(admin.ModelAdmin):
     actions = [mark_as_published, mark_as_returned]
 
 
-admin_site = CustomAdminSite(name='custom_admin')
 admin.site.register(Item, ItemAdmin)
