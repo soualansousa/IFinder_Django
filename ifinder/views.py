@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from .models import Item
 from .forms import Formulario
 from django.contrib.auth import login
-
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage

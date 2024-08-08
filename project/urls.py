@@ -6,6 +6,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('administrativo/', include('administrativo.urls')),
     path('', include('ifinder.urls')),
 ]
 
