@@ -6,4 +6,5 @@ app_name = 'administrativo'
 
 urlpatterns = [
     path('', views.home, name='admin_home'),
+    path('lista/', views.lista, name='lista'),
 ]
