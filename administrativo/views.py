@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from ifinder.models import Item
+from ifinder.forms import AdminItemForm
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 # Create your views here.
@@ -34,7 +35,9 @@ def lista(request):
     except EmptyPage:
         pagina = lista_paginada.page(1)
 
-    return render(request, "administrativo/pages/lista.html", {'itens': pagina, 'status': status}) # noqa
+    form = AdminItemForm()
+
+    return render(request, "administrativo/pages/lista.html", {'itens': pagina, 'status': status, 'form': form}) # noqa
 
 
 def publicar_item(request):

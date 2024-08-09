@@ -10,7 +10,7 @@ class Item(models.Model):
     ]
     Título = models.CharField(max_length=65)
     Descrição = models.TextField(max_length=165)
-    Publicada = models.BooleanField(default=False)
+    Publicado = models.BooleanField(default=False)
     Data = models.DateTimeField(auto_now_add=True)
     Imagem = models.ImageField(null=True, max_length=300)
     Autor = models.ForeignKey(
