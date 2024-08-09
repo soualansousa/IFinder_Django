@@ -70,10 +70,8 @@ def user_login(request):
         form = AuthenticationForm(data=request.POST)
         if form.is_valid():
             login(request, form.get_user())
-        
             if form.get_user().is_superuser:
                 return redirect("administrativo:admin_home")
-            
             return redirect("ifinder:home")
     else:
         form = AuthenticationForm()
