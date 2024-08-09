@@ -9,27 +9,92 @@
                 <option value="todos" {% if status == 'todos' %}selected{% endif %}>Todos</option>
                 <option value="perdido" {% if status == 'perdido' %}selected{% endif %}>Perdidos</option>
                 <option value="encontrado" {% if status == 'encontrado' %}selected{% endif %}>Encontrados</option>
+                <option value="publicado" {% if status == 'publicado' %}selected{% endif %}>Publicados</option>
+                <option value="devolvido" {% if status == 'devolvido' %}selected{% endif %}>Devolvidos</option>
             </select>
         </div>
-        <ul>
-            {% for Items in itens %}
-                <div class="objeto">
-                    <div class="objeto-imagem">
-                        <img src="{{Items.Imagem.url}}" alt="{{Items.Título}}">
-                    </div>
-                    <div class="objeto-informacao">
-                        <div class="objeto-cabecalho">
-                                <h3 class="objeto-titulo">{{Items.Título}}</h3>
-                                <p class="objeto-data">{{Items.Data|date:"d/m/Y"}}</p>
-                        </div>
-                        <div class="objeto-descrição">
-                            <p>{{Items.Descrição}}</p>
-                        </div>
-                    </div>
-                    <a href="{% url 'publicar-item' item.id %}" class="btn btn-success">Publicar</a>
-                </div>
-            {% endfor %}
-        </ul>
         
+        <div class="objetos-container">
+                {% for Items in itens %}
+                    <div class="objeto">
+                        <div class="objeto-imagem">
+                            <img src="{{Items.Imagem.url}}" alt="{{Items.Título}}">
+                        </div>
+                        <div class="objeto-informacao">
+                            <div class="objeto-cabecalho">
+                                    <h3 class="objeto-titulo">{{Items.Título}}</h3>
+                                    <p class="objeto-data">{{Items.Data|date:"d/m/Y"}}</p>
+                            </div>
+                            <div class="objeto-descrição">
+                                <p>{{Items.Descrição}}</p>
+                            </div>
+                        </div>
+                        <a href="{% url 'administrativo:lista'%}" class="btn btn-success">Publicar</a>
+                    </div>
+                {% endfor %}
+        </div>
+
+        
+        <nav class="pagination">
+            {% if itens.has_previous %}
+                <ul>
+                    <li class="page-item">
+                        <a href="?status={{ status }}&p=1">&laquo;</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="page-item"> 
+                        <a href="?status={{ status }}&p={{ itens.previous_page_number }}">Anterior</a>
+                    </li>
+                </ul>
+            {% else  %}
+                <ul>
+                    <li class="disabled">
+                        <a href="#">&laquo;</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="disabled"> 
+                        <a href="#">Anterior</a>
+                    </li>
+                </ul>
+            {% endif %}
+            <ul>
+                <li class="page-item">
+                    <a href="">{{itens.number}}</a>
+                </li>
+            </ul>
+            {% if itens.has_next %}
+                <ul>
+                    <li class="page-item">
+                        <a href="?status={{ status }}&p={{ itens.next_page_number }}">Próxima</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="page-item">
+                        <a href="?status={{ status }}&p={{ itens.paginator.num_pages }}">&raquo;</a>
+                    </li>
+                </ul>
+            {% else %}
+                <ul>
+                    <li class="disabled">
+                        <a href="">Próxima</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="disabled">
+                        <a href="#">&raquo;</a>
+                    </li>
+                </ul>
+            {% endif %}
+        </nav>
+    
+        <script>
+            function filterItems() {
+                var status = document.getElementById("statusFilter").value;
+                window.location.href = "?status=" + status;
+            }
+        </script>
+
     </main>
 {% endblock content %}
