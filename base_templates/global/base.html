@@ -16,37 +16,68 @@
     {% block head %}{% endblock head %}
 </head>
 <body>
-    {% if request.resolver_match.url_name == 'login'  %}
+    {% if request.resolver_match.url_name == 'login' %}
         <header class="top-sem-icon">
                 <h1>IFinder</h1>
         </header>
-            
-    {% elif request.resolver_match.url_name == 'admin_home'  %}
-        <header>
-            <i class="fa-solid fa-house invisebled"></i>
-            <h1>IFinder</h1>
-            <div class="nav-menu-logout">
-                <a href="/">
-                    <i class="fa-solid fa-right-from-bracket"></i>
-                </a>
-            </div>
-        </header>
-
-    {% else %}
-        <header>
-            <div class="nav-menu-home">
-                    <a href="/home/">
-                        <i class="fa-solid fa-house"></i>
-                    </a>
-            </div>
+    
+    {% elif request.resolver_match.app_name == 'administrativo'  %}
+        {% if request.resolver_match.url_name == 'admin_home' %}
+            <header>
+                <i class="fa-solid fa-house invisebled"></i>
                 <h1>IFinder</h1>
                 <div class="nav-menu-logout">
                     <a href="/">
                         <i class="fa-solid fa-right-from-bracket"></i>
                     </a>
                 </div>
-        </header>
+            </header>
+
+        {% else %}
+            <header>
+                <div class="nav-menu-home">
+                    <a href="/administrativo/">
+                        <i class="fa-solid fa-house"></i>
+                    </a>
+                </div>
+                <h1>IFinder</h1>
+                <div class="nav-menu-logout">
+                    <a href="/">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </a>
+                </div>
+            </header>
+        {% endif %}
+    
+    {% elif request.resolver_match.app_name == 'ifinder'  %}
+        {% if request.resolver_match.url_name == 'home' %}
+            <header>
+                <i class="fa-solid fa-house invisebled"></i>
+                <h1>IFinder</h1>
+                <div class="nav-menu-logout">
+                    <a href="/">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </a>
+                </div>
+            </header>
+
+        {% else %}
+            <header>
+                <div class="nav-menu-home">
+                    <a href="/home/">
+                        <i class="fa-solid fa-house"></i>
+                    </a>
+                </div>
+                <h1>IFinder</h1>
+                <div class="nav-menu-logout">
+                    <a href="/">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </a>
+                </div>
+            </header>
+        {% endif %}
     {% endif %}
+
  {% block content %}
  {% endblock content %} 
 </body>
