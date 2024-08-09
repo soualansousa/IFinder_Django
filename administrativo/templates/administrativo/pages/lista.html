@@ -26,6 +26,7 @@
                             <p>{{Items.Descrição}}</p>
                         </div>
                     </div>
+                    <a href="{% url 'publicar-item' item.id %}" class="btn btn-success">Publicar</a>
                 </div>
             {% endfor %}
         </ul>
