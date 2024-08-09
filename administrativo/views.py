@@ -7,3 +7,6 @@ from django.contrib.auth.decorators import login_required
 @login_required
 def home(request):
     return render(request, "administrativo/pages/home.html")
+
+def lista(request):
+    return render(request, "administrativo/pages/lista.html")

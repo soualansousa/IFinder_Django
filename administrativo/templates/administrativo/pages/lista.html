@@ -1,0 +1,16 @@
+{% extends 'global/base.html'%}
+{% block title %} | Página inicial{% endblock title %}
+{% block content %}
+    <main>
+        <h2 class="topo-login">Lista de itens</h2>
+
+        <div class="filtro">
+            <select id="statusFilter" onchange="filterItems()">
+                <option value="todos" {% if status == 'todos' %}selected{% endif %}>Todos</option>
+                <option value="perdido" {% if status == 'perdido' %}selected{% endif %}>Perdidos</option>
+                <option value="encontrado" {% if status == 'encontrado' %}selected{% endif %}>Encontrados</option>
+            </select>
+        </div>
+        
+    </main>
+{% endblock content %}
