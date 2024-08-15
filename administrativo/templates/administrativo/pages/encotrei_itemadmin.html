@@ -1,0 +1,53 @@
+{% extends 'global/base.html'%}
+
+{% block title %} | Encontrei um item{% endblock title %}
+
+{% block content %}
+    
+    <h2 class="topo-login">Encontrei um item</h2>
+
+    <div class="display-menu-formulario">
+        <form id="formulario" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in itens  %}
+            <div class="menu-cadastrar">
+                {{field.label_tag}}
+                {{field}}
+            </div>
+            {% endfor %}
+            <button id="botao_cadastrar" class="botao-enviar" type="submit">Cadastrar</button>
+        </form>
+    </div>
+
+    {% include "ifinder/partials/modal.html" %}
+
+    <script>
+        document.getElementById("formulario").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            var form = this;
+            var formData = new FormData(form);
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", form.action);
+            xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.success) {
+                        var modal = document.getElementById("myModal");
+                        modal.style.display = "block";
+                    } else if (response.errors) {
+                        alert("Erro: " + JSON.stringify(response.errors));
+                    }
+                } else {
+                    alert("Ocorreu um erro ao enviar o formulário.");
+                }
+            };
+            xhr.onerror = function() {
+                alert("A requisição falhou. Por favor, tente novamente.");
+            };
+            xhr.send(formData);
+        });
+        </script>
+
+{% endblock content %}

@@ -1,3 +1,4 @@
+from typing import Any
 from django import forms
 from .models import Item
 
@@ -21,7 +22,21 @@ class ItemForm(Formulario):
         kwargs['is_admin'] = False
         super().__init__(*args, **kwargs)
 
+
 class AdminItemForm(Formulario):
     def __init__(self, *args, **kwargs):
-        kwargs['is_admin'] = True
+        self.is_admin = kwargs.pop('is_admin', False)
         super().__init__(*args, **kwargs)
+
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+        if self.is_admin:
+            instance.Publicado = True
+            instance.Status = 'encontrado'
+        if commit:
+            instance.save()
+        return instance
+    
+    class Meta:
+        model = Item
+        fields = ['Título', 'Descrição', 'Imagem']

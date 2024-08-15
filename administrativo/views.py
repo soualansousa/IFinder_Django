@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from ifinder.models import Item
 from ifinder.forms import AdminItemForm
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.http import JsonResponse
 
 # Create your views here.
 
@@ -46,3 +47,24 @@ def publicar_item(request):
     item.save()
     return render(request, "administrativo/pages/lista.html")
 
+
+def encontrei_itemadmin(request):
+    if request.method == "POST":
+        lista_itens = AdminItemForm(request.POST, request.FILES, is_admin=True)
+        if lista_itens.is_valid():
+            item = lista_itens.save(commit=False)
+            item.Status = 'encontrado'
+            item.Autor = request.user
+            item.save()
+            if request.is_ajax():
+                return JsonResponse({'success': True})
+            else:
+                return render(request, 'ifinder/pages/cadastro_concluido.html')
+        else:
+            if request.is_ajax():
+                return JsonResponse({'success': False, 'errors': lista_itens.errors}, status=400)
+            else:
+                print(lista_itens.errors)
+    else:
+         lista_itens = AdminItemForm()
+    return render(request, "administrativo/pages/encontrei_itemadmin.html", {'itens': lista_itens})
