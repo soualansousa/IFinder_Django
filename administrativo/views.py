@@ -41,13 +41,6 @@ def lista(request):
     return render(request, "administrativo/pages/lista.html", {'itens': pagina, 'status': status, 'form': form}) # noqa
 
 
-def publicar_item(request):
-    item = get_object_or_404(Item)
-    item.publicado = True
-    item.save()
-    return render(request, "administrativo/pages/lista.html")
-
-
 def encontrei_itemadmin(request):
     if request.method == "POST":
         lista_itens = AdminItemForm(request.POST, request.FILES, is_admin=True)
