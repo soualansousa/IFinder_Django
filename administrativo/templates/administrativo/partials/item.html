@@ -1,0 +1,55 @@
+<div class="objeto">
+    <div class="objeto-imagem">
+        <img src="{{Items.Imagem.url}}" alt="{{Items.Título}}">
+    </div>
+    <div class="objeto-informacao">
+        <div class="objeto-cabecalho">
+                <h3 class="objeto-titulo">{{Items.Título}}</h3>
+                <p class="objeto-data">{{Items.Data|date:"d/m/Y"}}</p>
+        </div>
+        <div class="objeto-descrição">
+            <p>{{Items.Descrição}}</p>
+            <form method="post" action="/administrativo/lista/">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="id_Publicado">Publicado</label>
+                    <input type="checkbox" name="Publicado" id="id_Publicado" {% if item.Publicado %}checked{% endif %}>
+                </div>
+                <div class="form-group">
+                    <label for="id_Devolvido">Devolvido</label>
+                    <input type="checkbox" name="Devolvido" id="id_Devolvido" {% if item.Devolvido %}checked{% endif %}>
+                </div>
+                <button type="submit" class="botao-enviar">Salvar</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById("formulario").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        var form = this;
+        var formData = new FormData(form);
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", form.action);
+        xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                var response = JSON.parse(xhr.responseText);
+                if (response.success) {
+                    var modal = document.getElementById("myModal");
+                    modal.style.display = "block";
+                } else if (response.errors) {
+                    alert("Erro: " + JSON.stringify(response.errors));
+                }
+            } else {
+                alert("Ocorreu um erro ao enviar o formulário.");
+            }
+        };
+        xhr.onerror = function() {
+            alert("A requisição falhou. Por favor, tente novamente.");
+        };
+        xhr.send(formData);
+    });
+</script>
