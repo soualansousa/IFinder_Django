@@ -61,3 +61,24 @@ def encontrei_itemadmin(request):
     else:
         lista_itens = AdminItemForm()
     return render(request, "administrativo/pages/encontrei_itemadmin.html", {'itens': lista_itens})
+
+def perdi_itemadmin(request):
+    if request.method == "POST":
+        lista_itens = AdminItemForm(request.POST, request.FILES, is_admin=True)
+        if lista_itens.is_valid():
+            item = lista_itens.save(commit=False)
+            item.Status = 'perdido'
+            item.Autor = request.user
+            item.save()
+            if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+                return JsonResponse({'success': True})
+            else:
+                return render(request, 'administrativo/pages/cadastro_concluido.html')
+        else:
+            if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+                return JsonResponse({'success': False, 'errors': lista_itens.errors}, status=400)
+            else:
+                return render(request, "administrativo/pages/perdi_itemadmin.html", {'itens': lista_itens, 'errors': lista_itens.errors})
+    else:
+        lista_itens = AdminItemForm()
+    return render(request, "administrativo/pages/perdi_itemadmin.html", {'itens': lista_itens})
