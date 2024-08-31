@@ -56,15 +56,15 @@ def encontrei_itemadmin(request):
             item.Status = 'encontrado'
             item.Autor = request.user
             item.save()
-            if request.is_ajax():
+            if request.headers.get('x-requested-with') == 'XMLHttpRequest':
                 return JsonResponse({'success': True})
             else:
                 return render(request, 'ifinder/pages/cadastro_concluido.html')
         else:
-            if request.is_ajax():
+            if request.headers.get('x-requested-with') == 'XMLHttpRequest':
                 return JsonResponse({'success': False, 'errors': lista_itens.errors}, status=400)
             else:
-                print(lista_itens.errors)
+                return render(request, "administrativo/pages/encontrei_itemadmin.html", {'itens': lista_itens, 'errors': lista_itens.errors})
     else:
-         lista_itens = AdminItemForm()
+        lista_itens = AdminItemForm()
     return render(request, "administrativo/pages/encontrei_itemadmin.html", {'itens': lista_itens})

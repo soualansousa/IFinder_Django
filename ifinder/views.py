@@ -20,7 +20,7 @@ def lista_itens(request):
     elif status == 'encontrado':
         lista_itens = Item.objects.filter(Status='encontrado', Publicada=True)
     else:
-        lista_itens = Item.objects.filter(Publicada=True)
+        lista_itens = Item.objects.filter(Publicado=True)
 
     lista_paginada = Paginator(lista_itens, 5)
     p = request.GET.get("p")

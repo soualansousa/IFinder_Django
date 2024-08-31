@@ -24,7 +24,7 @@
     <script>
         document.getElementById("formulario").addEventListener("submit", function(event) {
             event.preventDefault();
-            
+    
             var form = this;
             var formData = new FormData(form);
             var xhr = new XMLHttpRequest();
@@ -48,6 +48,6 @@
             };
             xhr.send(formData);
         });
-        </script>
+    </script>
 
 {% endblock content %}
