@@ -6,9 +6,9 @@
 
         <div class="filtro">
             <select id="statusFilter" onchange="filterItems()">
-                <option value="todos" {% if status == 'todos' %}selected{% endif %}>Todos</option>
-                <option value="perdido" {% if status == 'perdido' %}selected{% endif %}>Perdidos</option>
-                <option value="encontrado" {% if status == 'encontrado' %}selected{% endif %}>Encontrados</option>
+                <option value="Todos" {% if status == 'aprovados' and not publicado or status == 'perdidos' and not publicado %}selected{% endif %}>Pendentes para publicar</option>
+                <option value="publicado" {% if status == 'publicado' %}selected{% endif %}>Publicados</option>
+                <option value="devolvido" {% if status == 'devolvido' %}selected{% endif %}>Devolvidos</option>
             </select>
         </div>
         

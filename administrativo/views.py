@@ -21,9 +21,9 @@ def lista(request):
     elif status == 'encontrado':
         lista_itens = Item.objects.filter(Status='encontrado')
     elif status == 'devolvido':
-        lista_itens = Item.objects.filter(Status='encontrado')
+        lista_itens = Item.objects.filter(Status='devolvido')
     elif status == 'publicado':
-        lista_itens = Item.objects.filter(Status='encontrado')
+        lista_itens = Item.objects.filter(Status='publicado')
     else:
         lista_itens = Item.objects.filter()
 
