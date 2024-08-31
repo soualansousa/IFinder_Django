@@ -9,4 +9,5 @@ urlpatterns = [
     path('lista/', views.lista, name='lista'),
     path('encontrei_itemadmin/', views.encontrei_itemadmin),
     path('perdi_itemadmin/', views.perdi_itemadmin),
+    path('item/<int:item_id>/update/', views.update_item, name='update_item'),
 ]

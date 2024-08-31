@@ -62,6 +62,20 @@ def encontrei_itemadmin(request):
         lista_itens = AdminItemForm()
     return render(request, "administrativo/pages/encontrei_itemadmin.html", {'itens': lista_itens})
 
+def update_item(request, item_id):
+    item = get_object_or_404(Item, id=item_id)
+
+    if request.method == 'POST':
+        publicado = request.POST.get('Publicado') == 'on'
+        devolvido = request.POST.get('Devolvido') == 'on'
+
+        item.Publicado = publicado
+        item.Devolvido = devolvido
+        item.save()
+
+        return JsonResponse({'success': True})
+    return JsonResponse({'success': False, 'errors': 'Método não permitido'})
+
 def perdi_itemadmin(request):
     if request.method == "POST":
         lista_itens = AdminItemForm(request.POST, request.FILES, is_admin=True)
