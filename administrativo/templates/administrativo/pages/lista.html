@@ -14,33 +14,7 @@
         
         <div class="objetos-container">
                 {% for Items in itens %}
-                    <div class="objeto">
-                        <div class="objeto-imagem">
-                            <img src="{{Items.Imagem.url}}" alt="{{Items.Título}}">
-                        </div>
-                        <div class="objeto-informacao">
-                            <div class="objeto-cabecalho">
-                                    <h3 class="objeto-titulo">{{Items.Título}}</h3>
-                                    <p class="objeto-data">{{Items.Data|date:"d/m/Y"}}</p>
-                            </div>
-                            <div class="objeto-descrição">
-                                <p>{{Items.Descrição}}</p>
-                                <form method="post" action="/administrativo/lista/">
-                                    {% csrf_token %}
-                                    <div class="form-group">
-                                        <label for="id_Publicado">Publicado</label>
-                                        <input type="checkbox" name="Publicado" id="id_Publicado" {% if item.Publicado %}checked{% endif %}>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="id_Devolvido">Devolvido</label>
-                                        <input type="checkbox" name="Devolvido" id="id_Devolvido" {% if item.Devolvido %}checked{% endif %}>
-                                    </div>
-                                    <button type="submit" class="botao-enviar">Salvar</button>
-                                </form>
-                            </div>
-                        </div>
-                            
-                    </div>
+                    {% include "administrativo/partials/item.html" %}
                 {% endfor %}
         </div>
 
