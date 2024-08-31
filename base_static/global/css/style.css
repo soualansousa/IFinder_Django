@@ -273,6 +273,7 @@ textarea {
 }
 
 .objeto-titulo{
+    font-size: small;
     padding: 0.5rem 0;
     margin-left: 1rem;
 }
@@ -282,6 +283,7 @@ textarea {
 }
  
 .objeto-descrição {
+    font-size: small;
     padding: 0.5rem 1rem;
     text-align: left;
 }
