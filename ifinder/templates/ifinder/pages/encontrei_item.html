@@ -21,7 +21,7 @@
 
     {% include "ifinder/partials/modal.html" %}
 
-    <script>
+      <script>
         document.getElementById("formulario").addEventListener("submit", function(event) {
           event.preventDefault();
           
@@ -38,6 +38,6 @@
           };
           xhr.send(formData);
         });
-        </script>
+      </script>
 
 {% endblock content %}

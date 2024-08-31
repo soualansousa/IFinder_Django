@@ -52,7 +52,7 @@ def encontrei_itemadmin(request):
             if request.headers.get('x-requested-with') == 'XMLHttpRequest':
                 return JsonResponse({'success': True})
             else:
-                return render(request, 'ifinder/pages/cadastro_concluido.html')
+                return render(request, 'administrativo/pages/cadastro_concluido.html')
         else:
             if request.headers.get('x-requested-with') == 'XMLHttpRequest':
                 return JsonResponse({'success': False, 'errors': lista_itens.errors}, status=400)
