@@ -16,9 +16,9 @@ def lista_itens(request):
     status = request.GET.get('status', 'todos')
 
     if status == 'perdido':
-        lista_itens = Item.objects.filter(Status='perdido', Publicada=True)
+        lista_itens = Item.objects.filter(Status='perdido', Publicado=True)
     elif status == 'encontrado':
-        lista_itens = Item.objects.filter(Status='encontrado', Publicada=True)
+        lista_itens = Item.objects.filter(Status='encontrado', Publicado=True)
     else:
         lista_itens = Item.objects.filter(Publicado=True)
 

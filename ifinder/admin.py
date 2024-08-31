@@ -10,11 +10,11 @@ class ItemAdmin(admin.ModelAdmin):
     date_hierarchy = 'Data'
 
     def mark_as_published(self, request, queryset):
-        updated_count = queryset.update(Publicada=True)
+        updated_count = queryset.update(Publicado=True)
         self.message_user(request, f"{updated_count} os itens foram marcados como publicados com sucesso.")  # noqa
 
     def mark_as_returned(self, request, queryset):
-        updated_count = queryset.update(Devolvido=True, Publicada=False)
+        updated_count = queryset.update(Devolvido=True, Publicado=False)
         self.message_user(request, f"{updated_count} os itens foram marcados com sucesso como devolvidos.") # noqa
 
     mark_as_returned.short_description = "Marcar itens selecionados como devolvidos" # noqa
