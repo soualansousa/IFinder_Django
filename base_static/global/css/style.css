@@ -188,6 +188,22 @@ textarea {
 .botao-enviar:hover{
     opacity: 0.8;
 }
+.botao-salvar{
+    padding: 1rem;
+    gap: 1rem;
+    border-radius: 0.5rem;
+    border: 0.2rem solid var(--botton-color-green);
+    background: var(--botton-color-green);
+    color: var(--background-color);
+    margin: 1.5rem 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+}
+
+.botao-salvar:hover{
+    opacity: 0.8;
+}
 
 .menu-cadastrar{
     display: flex;
