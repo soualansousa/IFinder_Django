@@ -4,8 +4,8 @@ from ifinder.models import Item
 from ifinder.forms import AdminItemForm
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import JsonResponse
-
-# Create your views here.
+from django.template.loader import render_to_string
+import logging
 
 
 @login_required
@@ -21,12 +21,14 @@ def lista(request):
     elif status == 'encontrado':
         lista_itens = Item.objects.filter(Status='encontrado')
     elif status == 'devolvido':
-        lista_itens = Item.objects.filter(Status='devolvido')
+        lista_itens = Item.objects.filter(Devolvido=True)
     elif status == 'publicado':
-        lista_itens = Item.objects.filter(Status='publicado')
+        lista_itens = Item.objects.filter(Publicado=True)  # Aqui, 'Publicado' deve ser verdadeiro
+    elif status == 'pendente':
+        lista_itens = Item.objects.filter(Publicado=False)  # Itens não publicados
     else:
-        lista_itens = Item.objects.filter()
-
+        lista_itens = Item.objects.all()
+    
     lista_paginada = Paginator(lista_itens, 5)
     p = request.GET.get("p")
     try:
@@ -62,21 +64,29 @@ def encontrei_itemadmin(request):
         lista_itens = AdminItemForm()
     return render(request, "administrativo/pages/encontrei_itemadmin.html", {'itens': lista_itens})
 
-
+logger = logging.getLogger(__name__)
 def update_item(request, item_id):
-    item = get_object_or_404(Item, id=item_id)
-    if request.method == 'POST':
-        form = AdminItemForm(request.POST, instance=item)
-        if form.is_valid():
-            form.save()
-            return JsonResponse({'success': True})
-        else:
-            return JsonResponse({'success': False, 'errors': form.errors}, status=400)
-    else:
-        form = AdminItemForm(instance=item)
-    return render(request, 'administrativo/pages/update_item.html', {'form': form, 'item': item})
+    if request.method == "POST":
+        logger.info(f"Recebido POST para item_id: {item_id}")
+        logger.info(f"Dados do formulário: {request.POST}")
+        try:
+            item = get_object_or_404(Item, id=item_id)
+            item.Publicado = 'Publicado' in request.POST
+            item.Devolvido = 'Devolvido' in request.POST
+            item.save()
 
+            # Use 'Items' para corresponder ao que você usa no partial
+            updated_item_html = render_to_string('administrativo/partials/item.html', {'Items': item})
 
+            return JsonResponse({'success': True, 'html': updated_item_html})
+        except Item.DoesNotExist:
+            logger.error("Item não encontrado.")
+            return JsonResponse({'success': False, 'errors': 'Item não encontrado.'}, status=404)
+        except Exception as e:
+            logger.error(f"Erro: {str(e)}")
+            return JsonResponse({'success': False, 'errors': str(e)}, status=500)
+    
+    return JsonResponse({'success': False, 'errors': 'Método não permitido.'}, status=405)
 def perdi_itemadmin(request):
     if request.method == "POST":
         lista_itens = AdminItemForm(request.POST, request.FILES, is_admin=True)

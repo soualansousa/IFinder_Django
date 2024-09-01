@@ -1,27 +1,26 @@
-
 <div class="objeto">
     <div class="objeto-imagem">
-        <img src="{{ item.Imagem.url }}" alt="{{ item.Título }}">
+        <img src="{{ Items.Imagem.url}}" alt="{{Items.Título}}">
     </div>
     <div class="objeto-informacao">
         <div class="objeto-cabecalho">
-            <h3 class="objeto-titulo">{{ item.Título }}</h3>
-            <p class="objeto-data">{{ item.Data|date:"d/m/Y" }}</p>
+            <h3 class="objeto-titulo">{{Items.Título}}</h3>
+            <p class="objeto-data">{{Items.ata|date:"d/m/Y" }}</p>
         </div>
         <div class="objeto-descrição">
-            <p>{{ item.Descrição }}</p>
+            <p>{{ Items.Descrição }}</p>
             <form id="formulario_{{ Items.id }}" method="post" action="{% url 'administrativo:update_item' Items.id %}">
-                {% csrf_token %}
-                <div class="grupo-de-formulários">
-                    <input type="checkbox" name="Publicado" id="id_Publicado_{{ Items.id }}" {% if Items.Publicado %}checked{% endif %}>
-                    <label for="id_Publicado_{{ Items.id }}">Publicado</label>
-                </div>
-                <div class="grupo-de-formulários">
-                    <input type="checkbox" name="Devolvido" id="id_Devolvido_{{ Items.id }}" {% if Items.Devolvido %}checked{% endif %}>
-                    <label for="id_Devolvido_{{ Items.id }}">Devolvido</label>
-                </div>
-                <button type="submit" class="botao-enviar">Salvar</button>
-            </form>
+    {% csrf_token %}
+    <div class="grupo-de-formulários">
+        <input type="checkbox" name="Publicado" id="id_Publicado_{{ Items.id }}" {% if Items.Publicado %}checked{% endif %}>
+        <label for="id_Publicado_{{ Items.id }}">Publicado</label>
+    </div>
+    <div class="grupo-de-formulários">
+        <input type="checkbox" name="Devolvido" id="id_Devolvido_{{ Items.id }}" {% if Items.Devolvido %}checked{% endif %}>
+        <label for="id_Devolvido_{{ Items.id }}">Devolvido</label>
+    </div>
+    <button type="submit" class="botao-enviar">Salvar</button>
+</form>
         </div>
     </div>
 </div>

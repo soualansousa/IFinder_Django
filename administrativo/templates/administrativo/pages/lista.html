@@ -1,4 +1,4 @@
-{% extends 'global/base.html'%}
+{% extends 'global/base.html' %}
 {% block title %} | Página inicial{% endblock title %}
 {% block content %}
     <main>
@@ -6,19 +6,20 @@
 
         <div class="filtro">
             <select id="statusFilter" onchange="filterItems()">
-                <option value="Todos" {% if status == 'aprovados' and not publicado or status == 'perdidos' and not publicado %}selected{% endif %}>Pendentes para publicar</option>
+                <option value="pendente" {% if status == 'pendente' %}selected{% endif %}>Pendentes para publicar</option>
                 <option value="publicado" {% if status == 'publicado' %}selected{% endif %}>Publicados</option>
                 <option value="devolvido" {% if status == 'devolvido' %}selected{% endif %}>Devolvidos</option>
             </select>
         </div>
         
-        <div class="objetos-container">
-                {% for Items in itens %}
+        <div class="objetos-container" id="items-container">
+            {% for Items in itens %}
+                <div id="item_{{ Items.id }}" class="objeto">
                     {% include "administrativo/partials/item.html" %}
-                {% endfor %}
+                </div>
+            {% endfor %}
         </div>
 
-        
         <nav class="pagination">
             {% if itens.has_previous %}
                 <ul>
@@ -31,7 +32,7 @@
                         <a href="?status={{ status }}&p={{ itens.previous_page_number }}">Anterior</a>
                     </li>
                 </ul>
-            {% else  %}
+            {% else %}
                 <ul>
                     <li class="disabled">
                         <a href="#">&laquo;</a>
@@ -72,7 +73,7 @@
                 </ul>
             {% endif %}
         </nav>
-    
+
         <script>
             function filterItems() {
                 var status = document.getElementById("statusFilter").value;
@@ -81,42 +82,44 @@
         </script>
 
         <script>
-            document.querySelectorAll("form[id^='formulario_']").forEach(function(form) {
-                form.addEventListener("submit", function(event) {
-                    event.preventDefault();
-            
-                    var formData = new FormData(form); // Coleta os dados do formulário específico
-                    var xhr = new XMLHttpRequest();
-                    xhr.open("POST", form.action);
-                    xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-            
-                    xhr.onload = function() {
+            document.addEventListener('DOMContentLoaded', () => {
+                document.querySelectorAll("form[id^='formulario_']").forEach(form => {
+                    form.addEventListener("submit", async event => {
+                        event.preventDefault();
+                
+                        const formData = new FormData(form);
+                        const url = form.action;
+                
                         try {
-                            var response = JSON.parse(xhr.responseText);
-            
-                            if (xhr.status === 200) {
-                                if (response.success) {
+                            const response = await fetch(url, {
+                                method: 'POST',
+                                body: formData,
+                                headers: {
+                                    'X-Requested-With': 'XMLHttpRequest',
+                                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                                }
+                            });
+                
+                            const result = await response.json();
+                
+                            if (response.ok) {
+                                if (result.success) {
                                     alert("Item atualizado com sucesso!");
-                                } else if (response.errors) {
-                                    alert("Erro: " + JSON.stringify(response.errors));
+                                    // Recarregar a página após sucesso
+                                    window.location.reload();
+                                } else if (result.errors) {
+                                    alert("Erro: " + JSON.stringify(result.errors));
                                 }
                             } else {
                                 alert("Ocorreu um erro ao enviar o formulário.");
                             }
-                        } catch (e) {
-                            console.error("Erro ao processar a resposta do servidor:", e);
-                            alert("Ocorreu um erro ao enviar o formulário. A resposta do servidor não é válida.");
+                        } catch (error) {
+                            console.error("Erro ao enviar o formulário:", error);
+                            alert("Ocorreu um erro ao enviar o formulário. Por favor, tente novamente.");
                         }
-                    };
-            
-                    xhr.onerror = function() {
-                        alert("A requisição falhou. Por favor, tente novamente.");
-                    };
-            
-                    xhr.send(formData); // Envia os dados do formulário específico via AJAX
+                    });
                 });
             });
-            
         </script>
 
     </main>
