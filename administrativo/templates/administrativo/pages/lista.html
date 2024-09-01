@@ -6,7 +6,7 @@
 
         <div class="filtro">
             <select id="statusFilter" onchange="filterItems()">
-                <option value="pendente" {% if status == 'pendente' %}selected{% endif %}>Pendentes para publicar</option>
+                <option value="pendente" {% if status != 'pendente' %}selected{% endif %}>Pendentes para publicar</option>
                 <option value="publicado" {% if status == 'publicado' %}selected{% endif %}>Publicados</option>
                 <option value="devolvido" {% if status == 'devolvido' %}selected{% endif %}>Devolvidos</option>
             </select>
