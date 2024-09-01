@@ -9,6 +9,7 @@
         </div>
         <div class="objeto-descrição">
             <p>{{ Items.Descrição }}</p>
+            <p>{{ Items.Status }}</p>
             <form id="formulario_{{ Items.id }}" method="post" action="{% url 'administrativo:update_item' Items.id %}">
     {% csrf_token %}
     <div class="grupo-de-formulários">

@@ -25,7 +25,7 @@ def lista(request):
     elif status == 'publicado':
         lista_itens = Item.objects.filter(Publicado=True)  # Aqui, 'Publicado' deve ser verdadeiro
     elif status == 'pendente':
-        lista_itens = Item.objects.filter(Publicado=False).exclude(Devolvido=True)  # Itens não publicados
+        lista_itens = Item.objects.filter(Publicado=False).exclude(Devolvido=True)  # Itens não publicados, excluindo os itens devolvidos
     else:
         lista_itens = Item.objects.all()
     
